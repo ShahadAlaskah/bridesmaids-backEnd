@@ -7,6 +7,7 @@ import lombok.NoArgsConstructor;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.validation.constraints.AssertFalse;
 import java.util.UUID;
 
 @Entity
@@ -21,4 +22,6 @@ public class Vendor {
     @Column(unique = true)
     private String maeroufnumber;
     private String About;
+    @AssertFalse
+    private Boolean isApproved;
 }
