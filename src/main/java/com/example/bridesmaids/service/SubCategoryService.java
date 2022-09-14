@@ -1,7 +1,7 @@
 package com.example.bridesmaids.service;
 
 
-import com.example.bridesmaids.exception.apiException;
+import com.example.bridesmaids.exception.ApiException;
 import com.example.bridesmaids.model.SubCategory;
 import com.example.bridesmaids.repository.SubCategoryRepository;
 import lombok.RequiredArgsConstructor;
@@ -28,7 +28,7 @@ public List<SubCategory> GetSubCategory(){
     public SubCategory updateSubCategory(SubCategory SubCategory, Integer id) {
         SubCategory oldSubCategory = subCategoryRepository.findSubCategoriesById(id);
         if(oldSubCategory == null){
-            throw  new apiException("wrong in SubCategory id");
+            throw  new ApiException("wrong in SubCategory id");
         }
         oldSubCategory.setCategoryid(SubCategory.getCategoryid());
         oldSubCategory.setName(SubCategory.getName());
@@ -39,7 +39,7 @@ public List<SubCategory> GetSubCategory(){
     public void deleteSubCategory(Integer id) {
         SubCategory checkSubCategory = subCategoryRepository.findSubCategoriesById(id);
         if(checkSubCategory == null){
-            throw  new apiException("wrong in SubCategory id");
+            throw  new ApiException("wrong in SubCategory id");
         }
         subCategoryRepository.delete(checkSubCategory);
     }

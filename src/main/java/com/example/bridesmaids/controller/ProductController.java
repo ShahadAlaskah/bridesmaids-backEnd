@@ -51,8 +51,20 @@ public class ProductController {
 
 
     @GetMapping("/byVenderId")
-    public ResponseEntity<List> getProductByVender(@RequestBody Integer venderId) {
-        List<Product> products = productService.getProductByVender(venderId);
+    public ResponseEntity<List> findAllByVenderId(@RequestBody Integer venderId) {
+        List<Product> products = productService.findAllByVenderId(venderId);
+        return ResponseEntity.status(200).body(products);
+    }
+
+    @GetMapping("/getByCategory/{categoryId}")
+    public ResponseEntity<List> findAllByCategoryId(@PathVariable Integer categoryId) {
+        List<Product> products = productService.findAllByCategoryId(categoryId);
+        return ResponseEntity.status(200).body(products);
+    }
+
+    @GetMapping("/getBySubCategory/{subCategoryId}")
+    public ResponseEntity<List> findAllBySubCategoryId(@PathVariable Integer subCategoryId) {
+        List<Product> products = productService.findAllBySubCategoryId(subCategoryId);
         return ResponseEntity.status(200).body(products);
     }
 }
