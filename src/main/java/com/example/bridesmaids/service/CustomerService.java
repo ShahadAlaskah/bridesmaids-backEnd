@@ -11,19 +11,28 @@ public class CustomerService {
     private final CustomerRepositry customerRepositry;
 
     public Customer GetCustomer(Customer customer) {
-        return customerRepositry.getById(customer.getId());
+        //        if(newUser==null){
+//        throw new ApiException("Wrong ID");
+//        }else{
+        return customerRepositry.findCustomerById(customer.getId());
     }
     public void AddCustomer(Customer customer) {;
         customerRepositry.save(customer);
     }
     public Customer updateCustomer(Customer customer, Integer id) {
-       Customer newcustomer = customerRepositry.getById(id);
-        newcustomer.setAge(customer.getAge());
-        newcustomer.setGender(customer.getGender());
-        return customerRepositry.save(newcustomer);
+       Customer newCustomer = customerRepositry.findCustomerById(id);
+        //        if(newUser==null){
+//        throw new ApiException("Wrong ID");
+//        }else{
+        newCustomer.setAge(customer.getAge());
+        newCustomer.setGender(customer.getGender());
+        return customerRepositry.save(newCustomer);
 
     }
     public void deleteCustomer(Integer id) {
-     customerRepositry.delete(customerRepositry.getById(id));
+        //        if(newUser==null){
+//        throw new ApiException("Wrong ID");
+//        }else{
+     customerRepositry.delete(customerRepositry.findCustomerById(id));
     }
 }

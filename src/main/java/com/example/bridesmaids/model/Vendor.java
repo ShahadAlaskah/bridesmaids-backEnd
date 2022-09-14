@@ -16,11 +16,11 @@ public class Vendor {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
-    private Integer userid;
+    private Integer userId;
     private String pic;
     @Column(unique = true)
-    private String maeroufnumber;
-    private String About;
+    private String maeroufNumber;
+    private String about;
     @AssertFalse
     private Boolean isApproved;
 }

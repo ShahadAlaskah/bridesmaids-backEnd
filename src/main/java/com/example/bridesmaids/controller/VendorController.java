@@ -18,7 +18,7 @@ public class VendorController {
 
     @GetMapping
     public ResponseEntity GetVendors(Vendor vendor){;
-        return  ResponseEntity.status(201).body(vendorService.GetVendor(vendor));
+        return  ResponseEntity.status(200).body(vendorService.GetVendor(vendor));
     }
 
 
@@ -31,11 +31,11 @@ public class VendorController {
     @PutMapping("/{id}")
     public ResponseEntity UpdateVendor(@RequestBody @Valid  Vendor vendor, @PathVariable Integer id){
         vendorService.UpdateVendor(vendor,id);
-        return  ResponseEntity.status(201).body(new ApiResponse("vendor updated!",201));
+        return  ResponseEntity.status(200).body(new ApiResponse("vendor updated!",201));
     }
     @DeleteMapping("/{id}")
     public ResponseEntity deleteVendor(@PathVariable Integer id,Vendor vendor){
         vendorService.deleteVendor(id);
-        return  ResponseEntity.status(201).body(new ApiResponse("vendor deleted!",201));
+        return  ResponseEntity.status(200).body(new ApiResponse("vendor deleted!",201));
     }
 }

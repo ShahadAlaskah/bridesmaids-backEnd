@@ -15,7 +15,7 @@ public class CustomerController {
 
     @GetMapping
     public ResponseEntity GetCustomers(@RequestBody @Valid Customer customer){;
-        return  ResponseEntity.status(201).body(customerService.GetCustomer(customer));
+        return  ResponseEntity.status(200).body(customerService.GetCustomer(customer));
     }
 
 
@@ -28,11 +28,11 @@ public class CustomerController {
     @PutMapping("/{id}")
     public ResponseEntity UpdateCustomer(@RequestBody @Valid  Customer customer, @PathVariable Integer id){
         customerService.updateCustomer(customer,id);
-        return  ResponseEntity.status(201).body(new ApiResponse("Customer updated!",201));
+        return  ResponseEntity.status(200).body(new ApiResponse("Customer updated!",201));
     }
     @DeleteMapping("/{id}")
     public ResponseEntity deleteCustomer(@PathVariable  Integer id, Customer customer){
        customerService.deleteCustomer(id);
-        return  ResponseEntity.status(201).body(new ApiResponse("Customer deleted!",201));
+        return  ResponseEntity.status(200).body(new ApiResponse("Customer deleted!",201));
     }
 }

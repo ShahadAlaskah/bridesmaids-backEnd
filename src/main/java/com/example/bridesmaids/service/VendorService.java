@@ -12,21 +12,30 @@ public class VendorService {
     private final VendorRepositry vendorRepositry;
 
     public Vendor GetVendor(Vendor vendor) {
-        return vendorRepositry.getById(vendor.getId());
+        //        if(newUser==null){
+//        throw new ApiException("Wrong ID");
+//        }else{
+        return vendorRepositry.findVendorById(vendor.getId());
     }
     public void AddVendor(Vendor vendor) {;
         vendorRepositry.save(vendor);
     }
     public Vendor UpdateVendor(Vendor vendor, Integer id) {
-     Vendor newvendor = vendorRepositry.getById(id);
-       newvendor.setPic(vendor.getPic());
-       newvendor.setAbout(vendor.getAbout());
-       newvendor.setMaeroufnumber(vendor.getMaeroufnumber());
-        return vendorRepositry.save(newvendor);
+     Vendor newVendor = vendorRepositry.findVendorById(id);
+        //        if(newUser==null){
+//        throw new ApiException("Wrong ID");
+//        }else{
+       newVendor.setPic(vendor.getPic());
+       newVendor.setAbout(vendor.getAbout());
+       newVendor.setMaeroufNumber(vendor.getMaeroufNumber());
+        return vendorRepositry.save(newVendor);
 
     }
     public void deleteVendor(Integer id) {
-      vendorRepositry.delete(vendorRepositry.getById(id));
+        //        if(newUser==null){
+//        throw new ApiException("Wrong ID");
+//        }else{
+        vendorRepositry.delete(vendorRepositry.findVendorById(id));
     }
 
 }

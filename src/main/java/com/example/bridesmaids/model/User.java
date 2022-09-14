@@ -34,6 +34,6 @@ public class User {
     @Column(unique = true)
     private String email;
     @Range(min=10, message = "phone number need to be at least 10 digits")
-    private String phonenumber;
+    private String phoneNumber;
     private String location;
 }

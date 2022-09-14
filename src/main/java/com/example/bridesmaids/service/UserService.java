@@ -11,8 +11,11 @@ import java.util.Optional;
 public class UserService {
     private final UserRepositry userRepositry;
 
-    public Optional<User> GetUser(User user) {
-        return userRepositry.findById(user.getId());
+    public User GetUser(User user) {
+        //        if(newUser==null){
+//        throw new ApiException("Wrong ID");
+//        }else{
+        return userRepositry.findUserById(user.getId());
     }
 
     public void register(User user) {
@@ -21,18 +24,24 @@ public class UserService {
         userRepositry.save(user);
     }
     public User updateUser(User user, Integer id) {
-        User newuser = userRepositry.getById(id);
-       newuser.setUsername(user.getUsername());
-       newuser.setName(user.getName());
-        newuser.setEmail(user.getEmail());
-        newuser.setPassword(user.getPassword());
-        newuser.setPhonenumber(user.getPhonenumber());
-        return userRepositry.save(newuser);
+        User newUser = userRepositry.findUserById(id);
+//        if(newUser==null){
+//        throw new ApiException("Wrong ID");
+//        }else{
+            newUser.setUsername(user.getUsername());
+            newUser.setName(user.getName());
+            newUser.setEmail(user.getEmail());
+            newUser.setPassword(user.getPassword());
+            newUser.setPhoneNumber(user.getPhoneNumber());
+            return userRepositry.save(newUser);
 
     }
 
     public void deleteuser(Integer id) {
-        userRepositry.delete(userRepositry.getById(id));
+//        if(newUser==null){
+//        throw new ApiException("Wrong ID");
+//        }else{
+        userRepositry.delete(userRepositry.findUserById(id));
     }
 
 }
