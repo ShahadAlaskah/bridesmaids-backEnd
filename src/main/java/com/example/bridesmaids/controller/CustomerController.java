@@ -9,28 +9,28 @@ import javax.validation.Valid;
 
 @AllArgsConstructor
 @RestController
-@RequestMapping("api/v1/waseefa")
+@RequestMapping("api/v1/customer")
 public class CustomerController {
     private final CustomerService customerService;
 
-    @GetMapping("/customer")
-    public ResponseEntity GetCustomers( Customer customer){;
+    @GetMapping
+    public ResponseEntity GetCustomers(@RequestBody @Valid Customer customer){;
         return  ResponseEntity.status(201).body(customerService.GetCustomer(customer));
     }
 
 
-    @PostMapping("/customer")
+    @PostMapping
     public ResponseEntity AddCustomer(@RequestBody @Valid Customer customer){
         customerService.AddCustomer(customer);
         return  ResponseEntity.status(201).body(new ApiResponse("Customer added!",201));
     }
 
-    @PutMapping("/customer/{id}")
+    @PutMapping("/{id}")
     public ResponseEntity UpdateCustomer(@RequestBody @Valid  Customer customer, @PathVariable Integer id){
         customerService.updateCustomer(customer,id);
         return  ResponseEntity.status(201).body(new ApiResponse("Customer updated!",201));
     }
-    @DeleteMapping("/customer/{id}")
+    @DeleteMapping("/{id}")
     public ResponseEntity deleteCustomer(@PathVariable  Integer id, Customer customer){
        customerService.deleteCustomer(id);
         return  ResponseEntity.status(201).body(new ApiResponse("Customer deleted!",201));
