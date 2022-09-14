@@ -3,6 +3,7 @@ package com.example.bridesmaids.model;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.hibernate.validator.constraints.Range;
 
 import javax.persistence.*;
 import javax.validation.constraints.Email;
@@ -24,7 +25,7 @@ public class User {
     private String username;
     private String name;
     @NotEmpty(message = "password cannot be empty")
-    @Pattern(regexp = "^(?=.*\\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,}$")
+//    @Pattern(regexp = "^(?=.*\\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,}$")
     private String password;
     @Pattern(regexp = "(Admin|Customer|Store)")
     private String role;
@@ -32,7 +33,7 @@ public class User {
     @Email
     @Column(unique = true)
     private String email;
-    @Size(min=10, message = "phone number need to be at least 10 digits")
+    @Range(min=10, message = "phone number need to be at least 10 digits")
     private String phonenumber;
     private String location;
 }
