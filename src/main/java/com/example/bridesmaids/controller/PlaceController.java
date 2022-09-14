@@ -43,4 +43,10 @@ public class PlaceController {
         placeService.deletePlace(placeId);
         return ResponseEntity.status(200).body(new ApiResponse("place deleted",200));
     }
+
+    @GetMapping("/getPlaceById/{placeId}")
+    public ResponseEntity<Place> getPlaceById(@PathVariable Integer placeId){
+        Place place= placeService.getPlaceById(placeId);
+        return ResponseEntity.status(200).body(place);
+    }
 }
