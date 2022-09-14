@@ -13,9 +13,13 @@ import javax.validation.Valid;
 public class CustomerController {
     private final CustomerService customerService;
 
-    @GetMapping
-    public ResponseEntity GetCustomers(@RequestBody @Valid Customer customer){;
-        return  ResponseEntity.status(200).body(customerService.GetCustomer(customer));
+    @GetMapping("/customers")
+    public ResponseEntity GetCustomers(){;
+        return  ResponseEntity.status(200).body(customerService.GetCustomers());
+    }
+    @GetMapping("/{id}")
+    public ResponseEntity GetCustomer(@PathVariable Integer id){;
+        return  ResponseEntity.status(200).body(customerService.GetCustomer(id));
     }
 
 
@@ -31,7 +35,7 @@ public class CustomerController {
         return  ResponseEntity.status(200).body(new ApiResponse("Customer updated!",201));
     }
     @DeleteMapping("/{id}")
-    public ResponseEntity deleteCustomer(@PathVariable  Integer id, Customer customer){
+    public ResponseEntity deleteCustomer(@PathVariable  Integer id){
        customerService.deleteCustomer(id);
         return  ResponseEntity.status(200).body(new ApiResponse("Customer deleted!",201));
     }

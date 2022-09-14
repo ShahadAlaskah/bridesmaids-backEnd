@@ -1,6 +1,5 @@
 package com.example.bridesmaids.service;
-
-import com.example.bridesmaids.exception.apiException;
+import com.example.bridesmaids.exception.ApiException;
 import com.example.bridesmaids.model.Category;
 import com.example.bridesmaids.repository.CategoryRepository;
 import lombok.RequiredArgsConstructor;
@@ -28,7 +27,7 @@ public List<Category> GetCategory(){
         public Category updateCategory(Category Category, Integer id) {
            Category oldCategory = categoryRepository.findCategoryById(id);
            if (oldCategory == null){
-               throw  new apiException("wrong in Category id");
+               throw  new ApiException("wrong in Category id");
            }
             oldCategory.setName(Category.getName());
 
@@ -38,7 +37,7 @@ public List<Category> GetCategory(){
         public void deleteCategory(Integer id) {
             Category checkCategory = categoryRepository.findCategoryById(id);
             if(checkCategory == null){
-                throw  new apiException("wrong in Category id");
+                throw  new ApiException("wrong in Category id");
             }
          categoryRepository.delete(checkCategory);
         }

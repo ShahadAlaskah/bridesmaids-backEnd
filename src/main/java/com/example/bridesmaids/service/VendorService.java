@@ -1,41 +1,59 @@
 package com.example.bridesmaids.service;
+import com.example.bridesmaids.exception.ApiException;
+import com.example.bridesmaids.model.User;
 import com.example.bridesmaids.model.Vendor;
+import com.example.bridesmaids.repository.UserRepositry;
 import com.example.bridesmaids.repository.VendorRepositry;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestParam;
 
-import java.util.UUID;
+import javax.validation.Valid;
+import java.util.List;
+
 
 @Service
 @AllArgsConstructor
 public class VendorService {
     private final VendorRepositry vendorRepositry;
 
-    public Vendor GetVendor(Vendor vendor) {
-        //        if(newUser==null){
-//        throw new ApiException("Wrong ID");
-//        }else{
-        return vendorRepositry.findVendorById(vendor.getId());
+    public List<Vendor> GetVendors() {
+
+            return vendorRepositry.findAll();
     }
-    public void AddVendor(Vendor vendor) {;
+
+
+    public Vendor GetVendor(@PathVariable Integer id){
+       Vendor vendor=vendorRepositry.findVendorById(id);
+        if(vendor==null){
+            throw new ApiException("Wrong id");
+        }
+      return vendor;
+    }
+    public void AddVendor(@Valid @RequestBody Vendor vendor) {;
         vendorRepositry.save(vendor);
     }
-    public Vendor UpdateVendor(Vendor vendor, Integer id) {
+    public Vendor UpdateVendor(@RequestBody @Valid Vendor vendor, @PathVariable Integer id) {
      Vendor newVendor = vendorRepositry.findVendorById(id);
-        //        if(newUser==null){
-//        throw new ApiException("Wrong ID");
-//        }else{
-       newVendor.setPic(vendor.getPic());
-       newVendor.setAbout(vendor.getAbout());
-       newVendor.setMaeroufNumber(vendor.getMaeroufNumber());
+    if(newVendor==null){
+        throw new ApiException("Wrong ID");
+      }else {
+        newVendor.setPic(vendor.getPic());
+        newVendor.setAbout(vendor.getAbout());
+        newVendor.setMaeroufNumber(vendor.getMaeroufNumber());
         return vendorRepositry.save(newVendor);
-
     }
-    public void deleteVendor(Integer id) {
-        //        if(newUser==null){
-//        throw new ApiException("Wrong ID");
-//        }else{
-        vendorRepositry.delete(vendorRepositry.findVendorById(id));
+    }
+    public void deleteVendor(@Valid @PathVariable Integer id) {
+            Vendor vendor=vendorRepositry.findVendorById(id);
+              if(id==null){
+        throw new ApiException("Wrong ID");
+     }else{
+        vendorRepositry.delete(vendor);
     }
 
 }
+}
+

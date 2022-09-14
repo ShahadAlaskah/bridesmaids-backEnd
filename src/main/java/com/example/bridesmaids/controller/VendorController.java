@@ -7,7 +7,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
-import java.util.UUID;
+
 
 @RestController
 @AllArgsConstructor
@@ -16,11 +16,15 @@ public class VendorController {
 
     private final VendorService vendorService;
 
-    @GetMapping
-    public ResponseEntity GetVendors(Vendor vendor){;
-        return  ResponseEntity.status(200).body(vendorService.GetVendor(vendor));
+    @GetMapping("vendors")
+    public ResponseEntity GetVendors(){;
+        return  ResponseEntity.status(200).body(vendorService.GetVendors());
     }
 
+    @GetMapping("/{id}")
+    public ResponseEntity GetVendor(@PathVariable Integer id){
+        return  ResponseEntity.status(200).body(vendorService.GetVendor(id));
+    }
 
     @PostMapping
     public ResponseEntity AddVendor(@RequestBody @Valid Vendor vendor){
