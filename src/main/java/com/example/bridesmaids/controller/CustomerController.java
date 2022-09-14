@@ -6,7 +6,6 @@ import lombok.AllArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import javax.validation.Valid;
-import java.util.UUID;
 
 @AllArgsConstructor
 @RestController
@@ -15,7 +14,7 @@ public class CustomerController {
     private final CustomerService customerService;
 
     @GetMapping("/customer")
-    public ResponseEntity GetCustomers(@AuthenticationPrincipal Customer customer){;
+    public ResponseEntity GetCustomers( Customer customer){;
         return  ResponseEntity.status(201).body(customerService.GetCustomer(customer));
     }
 
@@ -27,12 +26,12 @@ public class CustomerController {
     }
 
     @PutMapping("/customer/{id}")
-    public ResponseEntity UpdateCustomer(@RequestBody @Valid  Customer customer, @PathVariable UUID id){
+    public ResponseEntity UpdateCustomer(@RequestBody @Valid  Customer customer, @PathVariable Integer id){
         customerService.updateCustomer(customer,id);
         return  ResponseEntity.status(201).body(new ApiResponse("Customer updated!",201));
     }
     @DeleteMapping("/customer/{id}")
-    public ResponseEntity deleteCustomer(@PathVariable  UUID id,@AuthenticationPrincipal Customer customer){
+    public ResponseEntity deleteCustomer(@PathVariable  Integer id, Customer customer){
        customerService.deleteCustomer(id);
         return  ResponseEntity.status(201).body(new ApiResponse("Customer deleted!",201));
     }

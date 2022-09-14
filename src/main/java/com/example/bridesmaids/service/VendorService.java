@@ -17,7 +17,7 @@ public class VendorService {
     public void AddVendor(Vendor vendor) {;
         vendorRepositry.save(vendor);
     }
-    public Vendor UpdateVendor(Vendor vendor, UUID id) {
+    public Vendor UpdateVendor(Vendor vendor, Integer id) {
      Vendor newvendor = vendorRepositry.getById(id);
        newvendor.setPic(vendor.getPic());
        newvendor.setAbout(vendor.getAbout());
@@ -25,7 +25,7 @@ public class VendorService {
         return vendorRepositry.save(newvendor);
 
     }
-    public void deleteVendor(UUID id) {
+    public void deleteVendor(Integer id) {
       vendorRepositry.delete(vendorRepositry.getById(id));
     }
 

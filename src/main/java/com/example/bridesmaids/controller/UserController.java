@@ -15,7 +15,7 @@ public class UserController {
     private final UserService userService;
 
     @GetMapping("/user")
-    public ResponseEntity GetUsers(@AuthenticationPrincipal User user){;
+    public ResponseEntity GetUsers(User user){;
         return  ResponseEntity.status(201).body(userService.GetUser(user));
     }
 
@@ -32,12 +32,12 @@ public class UserController {
 //    }
 
     @PutMapping("/user/{id}")
-    public ResponseEntity UpdateUser(@RequestBody @Valid  User user, @PathVariable UUID id){
+    public ResponseEntity UpdateUser(@RequestBody @Valid  User user, @PathVariable Integer id){
         userService.updateUser(user,id);
         return  ResponseEntity.status(201).body(new ApiResponse("User updated!",201));
     }
     @DeleteMapping("/user/{id}")
-    public ResponseEntity deleteCustomer(@PathVariable  UUID id,@AuthenticationPrincipal User user){
+    public ResponseEntity deleteCustomer(@PathVariable  Integer id,User user){
         userService.deleteuser(id);
         return  ResponseEntity.status(201).body(new ApiResponse("User deleted!",201));
     }

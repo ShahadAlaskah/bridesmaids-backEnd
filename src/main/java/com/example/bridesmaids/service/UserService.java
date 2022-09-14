@@ -4,8 +4,6 @@ import com.example.bridesmaids.repository.UserRepositry;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
-import java.util.UUID;
-
 @Service
 @RequiredArgsConstructor
 public class UserService {
@@ -16,11 +14,11 @@ public class UserService {
     }
 
     public void register(User user) {
-        String hashedPassword= new BCryptPasswordEncoder().encode(user.getPassword());
-        user.setPassword(hashedPassword);
+//        String hashedPassword= new BCryptPasswordEncoder().encode(user.getPassword());
+//        user.setPassword(hashedPassword);
         userRepositry.save(user);
     }
-    public User updateUser(User user, UUID id) {
+    public User updateUser(User user, Integer id) {
         User newuser = userRepositry.getById(id);
        newuser.setUsername(user.getUsername());
         newuser.setEmail(user.getEmail());
@@ -30,7 +28,7 @@ public class UserService {
 
     }
 
-    public void deleteuser(UUID id) {
+    public void deleteuser(Integer id) {
         userRepositry.delete(userRepositry.getById(id));
     }
 

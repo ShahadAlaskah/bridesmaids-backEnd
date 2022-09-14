@@ -4,9 +4,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import javax.persistence.*;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Pattern;
@@ -19,7 +17,8 @@ import java.util.UUID;
 @Data
 public class User {
     @Id
-    private UUID id= UUID.randomUUID();
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Integer id;
     @Column(unique = true)
     @NotEmpty(message = "username cannot be empty")
     private String username;

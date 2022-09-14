@@ -17,7 +17,7 @@ public class VendorController {
     private final VendorService vendorService;
 
     @GetMapping("/vendor")
-    public ResponseEntity GetVendors(@AuthenticationPrincipal Vendor vendor){;
+    public ResponseEntity GetVendors(Vendor vendor){;
         return  ResponseEntity.status(201).body(vendorService.GetVendor(vendor));
     }
 
@@ -29,12 +29,12 @@ public class VendorController {
     }
 
     @PutMapping("/vendor/{id}")
-    public ResponseEntity UpdateVendor(@RequestBody @Valid  Vendor vendor, @PathVariable UUID id){
+    public ResponseEntity UpdateVendor(@RequestBody @Valid  Vendor vendor, @PathVariable Integer id){
         vendorService.UpdateVendor(vendor,id);
         return  ResponseEntity.status(201).body(new ApiResponse("vendor updated!",201));
     }
-    @DeleteMapping("/customer/{id}")
-    public ResponseEntity deleteCustomer(@PathVariable  UUID id,@AuthenticationPrincipal Vendor vendor){
+    @DeleteMapping("/vendor/{id}")
+    public ResponseEntity deleteVendor(@PathVariable Integer id,Vendor vendor){
         vendorService.deleteVendor(id);
         return  ResponseEntity.status(201).body(new ApiResponse("vendor deleted!",201));
     }
