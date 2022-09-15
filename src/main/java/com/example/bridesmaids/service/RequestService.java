@@ -32,7 +32,7 @@ public class RequestService {
         oldRequest.setNote(request.getNote());
         oldRequest.setPrice(request.getPrice());
         oldRequest.setStatus(request.getStatus());
-        oldRequest.setVenderId(request.getVenderId());
+        oldRequest.setVendorId(request.getVendorId());
         oldRequest.setDateReceived(request.getDateReceived());
         oldRequest.setUserId(request.getUserId());
         oldRequest.setWayToCommunicate(request.getWayToCommunicate());
@@ -50,18 +50,18 @@ public class RequestService {
         requestRepository.delete(oldRequest);
     }
 
-    public List<Request> getAllByVenderId(Integer venderId) {
-        List<Request> requestList  = requestRepository.findAllByVenderId(venderId);
+    public List<Request> getAllByVendorId(Integer vendorId) {
+        List<Request> requestList  = requestRepository.findAllByVendorId(vendorId);
         if (requestList == null) {
-            throw new ApiException("venderId not found");
+            throw new ApiException("vendorId not found");
         }
         return requestList;
     }
 
-    public List<Request> getAllByVenderIdAndAndStatus(Integer venderId, String status) {
-        List<Request> requestList  = requestRepository.findAllByVenderIdAndAndStatus(status,venderId);
+    public List<Request> getAllByVendorIdAndAndStatus(Integer vendorId, String status) {
+        List<Request> requestList  = requestRepository.findAllByVendorIdAndStatus(vendorId,status);
         if (requestList == null) {
-            throw new ApiException("venderId or status not found");
+            throw new ApiException("vendorId or status not found");
         }
         return requestList;
     }

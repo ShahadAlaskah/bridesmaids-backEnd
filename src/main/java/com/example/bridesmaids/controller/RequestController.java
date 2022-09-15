@@ -50,15 +50,15 @@ public class RequestController {
         return ResponseEntity.status(200).body(request);
     }
 
-    @GetMapping("/getAllByVenderId/{venderId}")
-    public ResponseEntity<List<Request>> getAllByVenderId(@PathVariable Integer venderId){
-        List<Request> requestArrayList = requestService.getAllByVenderId(venderId);
+    @GetMapping("/getAllByVendorId/{vendorId}")
+    public ResponseEntity<List<Request>> getAllByVendorId(@PathVariable Integer vendorId){
+        List<Request> requestArrayList = requestService.getAllByVendorId(vendorId);
         return ResponseEntity.status(200).body(requestArrayList);
     }
 
-    @GetMapping("/getAllByVenderIdAndAndStatus/{venderId}/{status}")
-    public ResponseEntity<List<Request>> getAllByVenderIdAndAndStatus(@PathVariable Integer venderId,@PathVariable String status){
-        List<Request> requestArrayList = requestService.getAllByVenderIdAndAndStatus(venderId,status);
+    @GetMapping("/getAllByVendorIdAndAndStatus/{vendorId}/{status}")
+    public ResponseEntity<List<Request>> getAllByVendorIdAndAndStatus(@PathVariable Integer vendorId,@PathVariable String status){
+        List<Request> requestArrayList = requestService.getAllByVendorIdAndAndStatus(vendorId,status);
         return ResponseEntity.status(200).body(requestArrayList);
     }
 

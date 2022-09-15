@@ -23,7 +23,7 @@ public class Request {
     @NotNull
     private Integer userId;
     @NotNull
-    private Integer venderId;
+    private Integer vendorId;
     @NotNull
     private Integer productId;
     @NotEmpty
