@@ -13,7 +13,7 @@ import java.util.List;
 
 @AllArgsConstructor
 @RestController
-@RequestMapping("api/v1/SubCategory")
+@RequestMapping("/api/v1/SubCategory")
 public class SubCategoryController {
     private final SubCategoryService subCategoryService;
     @GetMapping("/SubCategory")

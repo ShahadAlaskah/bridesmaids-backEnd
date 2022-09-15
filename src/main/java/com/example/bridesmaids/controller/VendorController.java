@@ -11,12 +11,12 @@ import javax.validation.Valid;
 
 @RestController
 @AllArgsConstructor
-@RequestMapping("api/v1/vendor")
+@RequestMapping("/api/v1/vendor")
 public class VendorController {
 
     private final VendorService vendorService;
 
-    @GetMapping("vendors")
+    @GetMapping("/vendors")
     public ResponseEntity GetVendors(){;
         return  ResponseEntity.status(200).body(vendorService.GetVendors());
     }

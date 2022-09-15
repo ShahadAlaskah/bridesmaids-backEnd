@@ -8,7 +8,7 @@ import java.util.List;
 public interface RequestRepository extends JpaRepository<Request,Integer> {
     Request findRequestById(Integer id);
 
-    List<Request> findAllByVenderId(Integer venderId);
+    List<Request> findAllByVendorId(Integer vendorId);
 
-    List<Request> findAllByVenderIdAndAndStatus(String status ,Integer venderId);
+    List<Request> findAllByVendorIdAndStatus(Integer vendorId,String status);
 }

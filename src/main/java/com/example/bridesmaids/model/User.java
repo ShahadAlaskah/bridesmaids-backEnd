@@ -7,7 +7,7 @@ import org.hibernate.validator.constraints.Range;
 
 import javax.persistence.*;
 import javax.validation.constraints.*;
-import java.util.UUID;
+
 
 @Entity
 @AllArgsConstructor
@@ -24,7 +24,7 @@ public class User {
     @NotEmpty(message = "password cannot be empty")
 //    @Pattern(regexp = "^(?=.*\\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,}$")
     private String password;
-    @Pattern(regexp = "(Admin|Customer|Store)")
+    @Pattern(regexp = "(ADMIN|CUSTOMER|VENDOR)")
     private String role;
     @NotEmpty(message = "email cannot be empty")
     @Email
