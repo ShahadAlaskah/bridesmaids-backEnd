@@ -6,7 +6,7 @@ import lombok.AllArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import javax.validation.Valid;
-import java.util.UUID;
+
 
 @AllArgsConstructor
 @RestController
@@ -14,9 +14,13 @@ import java.util.UUID;
 public class UserController {
     private final UserService userService;
 
-    @GetMapping
-    public ResponseEntity GetUsers(@RequestBody @Valid User user){;
-        return  ResponseEntity.status(200).body(userService.GetUser(user));
+    @GetMapping("/users")
+    public ResponseEntity GetUsers(){;
+        return  ResponseEntity.status(200).body(userService.GetUsers());
+    }
+    @GetMapping("/{id}")
+    public ResponseEntity GetUser(@PathVariable Integer id){;
+        return  ResponseEntity.status(200).body(userService.GetUser(id));
     }
 
 
@@ -40,5 +44,16 @@ public class UserController {
     public ResponseEntity deleteCustomer(@PathVariable  Integer id,User user){
         userService.deleteuser(id);
         return  ResponseEntity.status(200).body(new ApiResponse("User deleted!",201));
+    }
+
+    @GetMapping("/notapproved")
+    public ResponseEntity NotApproved (){
+        return ResponseEntity.status(200).body(userService.NotApproved());
+
+    }
+
+    @PostMapping("/isapproved")
+    public ResponseEntity isApproved(@RequestParam @Valid Integer id){
+        return ResponseEntity.status(200).body(userService.Approved(id));
     }
 }

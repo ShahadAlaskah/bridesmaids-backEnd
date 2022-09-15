@@ -21,6 +21,5 @@ public class Vendor {
     @Column(unique = true)
     private String maeroufNumber;
     private String about;
-    @AssertFalse
-    private Boolean isApproved;
+
 }

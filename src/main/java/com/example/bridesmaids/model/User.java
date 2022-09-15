@@ -6,10 +6,7 @@ import lombok.NoArgsConstructor;
 import org.hibernate.validator.constraints.Range;
 
 import javax.persistence.*;
-import javax.validation.constraints.Email;
-import javax.validation.constraints.NotEmpty;
-import javax.validation.constraints.Pattern;
-import javax.validation.constraints.Size;
+import javax.validation.constraints.*;
 import java.util.UUID;
 
 @Entity
@@ -33,7 +30,8 @@ public class User {
     @Email
     @Column(unique = true)
     private String email;
-    @Range(min=10, message = "phone number need to be at least 10 digits")
+    @Range(min = 10, message = "phone number need to be at least 10 digits")
     private String phoneNumber;
     private String location;
+    private Boolean isApproved=false;
 }
