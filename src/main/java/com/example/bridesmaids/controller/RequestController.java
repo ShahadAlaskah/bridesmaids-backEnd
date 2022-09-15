@@ -30,17 +30,41 @@ public class RequestController {
         return ResponseEntity.status(201).body(new ApiResponse("New request added !",201));
     }
 
-    @PutMapping("update/{requestId}")
+    @PutMapping("/update/{requestId}")
     public ResponseEntity<ApiResponse> updateRequest(@RequestBody @Valid Request request,@PathVariable Integer requestId){
         requestService.updateRequest(request,requestId);
         return ResponseEntity.status(200).body(new ApiResponse("request updated !",201));
     }
 
 
-    @DeleteMapping("delete/{requestId}")
+    @DeleteMapping("/delete/{requestId}")
     public ResponseEntity<ApiResponse> deleteRequest(@PathVariable Integer requestId){
 
         requestService.deleteRequest(requestId);
         return ResponseEntity.status(200).body(new ApiResponse("request deleted",200));
+    }
+
+    @GetMapping("/getRequestById/{requestId}")
+    public ResponseEntity<Request> getRequestById(@PathVariable Integer requestId){
+        Request request = requestService.getRequestById(requestId);
+        return ResponseEntity.status(200).body(request);
+    }
+
+    @GetMapping("/getAllByVenderId/{venderId}")
+    public ResponseEntity<List<Request>> getAllByVenderId(@PathVariable Integer venderId){
+        List<Request> requestArrayList = requestService.getAllByVenderId(venderId);
+        return ResponseEntity.status(200).body(requestArrayList);
+    }
+
+    @GetMapping("/getAllByVenderIdAndAndStatus/{venderId}/{status}")
+    public ResponseEntity<List<Request>> getAllByVenderIdAndAndStatus(@PathVariable Integer venderId,@PathVariable String status){
+        List<Request> requestArrayList = requestService.getAllByVenderIdAndAndStatus(venderId,status);
+        return ResponseEntity.status(200).body(requestArrayList);
+    }
+
+    @PutMapping("/changeRequestStatus/{requestId}/{status}")
+    public ResponseEntity<ApiResponse> changeRequestStatus(@PathVariable Integer requestId,@PathVariable String status){
+        requestService.changeRequestStatus(requestId,status);
+        return ResponseEntity.status(200).body(new ApiResponse("request status updated !",201));
     }
 }

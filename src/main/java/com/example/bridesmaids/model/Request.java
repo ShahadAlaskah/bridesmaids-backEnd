@@ -32,6 +32,8 @@ public class Request {
     private LocalDate bookDate;
     @NotEmpty
     private String status;
+    @NotEmpty
+    private String wayToCommunicate;
     private Float price;
     private String note;
 

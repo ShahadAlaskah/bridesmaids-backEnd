@@ -37,7 +37,9 @@ public class Product {
     private Double price;
 
     @NotNull(message = "Category Id must not be null!")
-    private Integer subCategoryId;
+    private Integer categoryId;
 
+    @NotNull(message = "SubCategory Id must not be null!")
+    private Integer subCategoryId;
 }
 
