@@ -30,7 +30,7 @@ public class User {
     @Email
     @Column(unique = true)
     private String email;
-    @Range(min=10, message = "phone number need to be at least 10 digits")
+    @Range(min = 10, message = "phone number need to be at least 10 digits")
     private String phoneNumber;
     private String location;
     private Boolean isApproved=false;
