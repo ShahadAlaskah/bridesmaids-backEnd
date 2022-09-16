@@ -14,7 +14,7 @@ import java.util.List;
 public class CustomerService {
     private final CustomerRepositry customerRepositry;
 
-    public Customer GetCustomer(@PathVariable Integer id) {
+    public Customer getCustomer(Integer id) {
         Customer customer = customerRepositry.findCustomerById(id);
         if (customer == null) {
             throw new ApiException("Wrong ID");
@@ -23,11 +23,11 @@ public class CustomerService {
         }
     }
 
-    public List<Customer> GetCustomers() {
+    public List<Customer> getCustomers() {
         return customerRepositry.findAll();
     }
 
-    public void AddCustomer(Customer customer) {
+    public void addCustomer(Customer customer) {
         ;
         customerRepositry.save(customer);
     }

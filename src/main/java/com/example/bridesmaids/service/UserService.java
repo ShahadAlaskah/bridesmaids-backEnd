@@ -23,11 +23,11 @@ public class UserService {
     private final VendorRepositry vendorRepositry;
     private final CustomerRepositry customerRepositry;
 
-    public List<User> GetUsers() {
+    public List<User> getUsers() {
         return userRepositry.findAll();
     }
 
-    public User GetUser( Integer id){
+    public User getUser( Integer id){
         User user=userRepositry.findUserById(id);
         if(user==null){
             throw  new ApiException("Wrong ID");
@@ -56,22 +56,36 @@ public class UserService {
             customerRepositry.save(customer);
         }
     }
-    public User updateUser(  User user,  Integer id) {
+    public User updateUser( RegisterForm registerForm,  Integer id) {
         User newUser = userRepositry.findUserById(id);
+
         if (newUser == null) {
             throw new ApiException("Wrong ID");
-        } else {
-            newUser.setUsername(user.getUsername());
-            newUser.setName(user.getName());
-            newUser.setEmail(user.getEmail());
-            newUser.setPassword(user.getPassword());
-            newUser.setPhoneNumber(user.getPhoneNumber());
+        }
+        if(newUser.getRole().equals("CUSTOMER")) {
+            Customer customer = customerRepositry.findCustomerByUserId(id);
+            customer.setAge(registerForm.getAge());
+            customer.setGender(registerForm.getGender());
+            customerRepositry.save(customer);
+        }else if (newUser.getRole().equals("VENDOR")){
+            Vendor vendor=vendorRepositry.findVendorByUserId(id);
+            vendor.setPic(registerForm.getPic());
+            vendor.setAbout(registerForm.getAbout());
+            vendor.setMaeroufNumber(registerForm.getMaeroufNumber());
+            vendorRepositry.save(vendor);
+        }
+
+            newUser.setUsername(registerForm.getUsername());
+            newUser.setName(registerForm.getName());
+            newUser.setEmail(registerForm.getEmail());
+            newUser.setPassword(registerForm.getPassword());
+            newUser.setPhoneNumber(registerForm.getPhoneNumber());
             return userRepositry.save(newUser);
 
-        }
+
     }
 
-    public void deleteuser(  Integer id) {
+    public void deleteUser(  Integer id) {
         User user = userRepositry.findUserById(id);
         if (user == null) {
             throw new ApiException("Wrong ID");
@@ -80,14 +94,14 @@ public class UserService {
         }
     }
 
-    public Boolean Approved(Integer id){
+    public Boolean approved(Integer id){
         User user=userRepositry.findUserById(id);
         user.setIsApproved(true);
         userRepositry.save(user);
         return user.getIsApproved();
     }
 
-    public User NotApproved(){
+    public User notApproved(){
         return userRepositry.findUserByIsApproved();
     }
 
