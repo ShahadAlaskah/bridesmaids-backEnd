@@ -20,7 +20,7 @@ public class Product {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    private Integer venderId;
+    private Integer vendorId;
 
     @NotEmpty(message = "Name must not be empty!")
     @Size(min = 3, message = "Name have to be 3 character long at least!")

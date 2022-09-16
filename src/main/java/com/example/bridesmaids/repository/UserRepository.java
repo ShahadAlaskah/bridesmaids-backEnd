@@ -5,8 +5,9 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface UserRepositry extends JpaRepository<User, Integer> {
+public interface UserRepository extends JpaRepository<User, Integer> {
     User findUserById(Integer id);
+    User findUserByUsername(String username);
     @Query("select u from User u where u.isApproved=false")
     User findUserByIsApproved();
 
