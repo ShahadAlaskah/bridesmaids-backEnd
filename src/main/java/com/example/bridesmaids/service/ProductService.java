@@ -7,7 +7,7 @@ import com.example.bridesmaids.model.SubCategory;
 import com.example.bridesmaids.repository.CategoryRepository;
 import com.example.bridesmaids.repository.ProductRepository;
 import com.example.bridesmaids.repository.SubCategoryRepository;
-import com.example.bridesmaids.repository.UserRepositry;
+import com.example.bridesmaids.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -19,7 +19,7 @@ public class ProductService {
 
     private final ProductRepository productRepository;
     private final SubCategoryRepository subCategoryRepository;
-    private final UserRepositry userRepository;
+    private final UserRepository userRepository;
     private final CategoryRepository categoryRepository;
 
 
@@ -37,7 +37,7 @@ public class ProductService {
         if (subCategory==null){
             throw new ApiException("Wrong subCategory id");
         }
-//        product.setVenderId(user.getId());
+//        product.setVendorId(user.getId());
         productRepository.save(product);
     }
 
@@ -46,7 +46,7 @@ public class ProductService {
         if(product==null){
             throw new ApiException("Wrong product ID!");
         }
-//        if (product.getVenderId()!=user.getId()){
+//        if (product.getVendorId()!=user.getId()){
 //            throw new ApiException("Sorry , You do not have the authority to delete the product");
 //        }
         productRepository.delete(product);
@@ -69,15 +69,15 @@ public class ProductService {
     }
 
 //    public List<Product> getMyProducts(User user){
-//        return productRepository.findAllByVenderId(user.getId());
+//        return productRepository.findAllByVendorId(user.getId());
 //    }
 
     /////commmment
-    public List<Product> findAllByVenderId(Integer venderId){
-        if(userRepository.findUserById(venderId)==null){
-            throw new ApiException("Wrong venderId");
+    public List<Product> findAllByVendorId(Integer vendorId){
+        if(userRepository.findUserById(vendorId)==null){
+            throw new ApiException("Wrong vendorId");
         }
-        return productRepository.findAllByVenderId(venderId);
+        return productRepository.findAllByVendorId(vendorId);
     }
 
     public List<Product> findAllByCategoryId(Integer categoryId){

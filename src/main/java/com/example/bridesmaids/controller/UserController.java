@@ -1,9 +1,11 @@
 package com.example.bridesmaids.controller;
 import com.example.bridesmaids.dto.ApiResponse;
+import com.example.bridesmaids.dto.RegisterForm;
 import com.example.bridesmaids.model.User;
 import com.example.bridesmaids.service.UserService;
 import lombok.AllArgsConstructor;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.*;
 import javax.validation.Valid;
 
@@ -18,15 +20,15 @@ public class UserController {
     public ResponseEntity GetUsers(){;
         return  ResponseEntity.status(200).body(userService.GetUsers());
     }
-    @GetMapping("/{id}")
-    public ResponseEntity GetUser(@PathVariable Integer id){;
-        return  ResponseEntity.status(200).body(userService.GetUser(id));
+    @GetMapping("/user")
+    public ResponseEntity GetUser(@AuthenticationPrincipal User user){;
+        return  ResponseEntity.status(200).body(userService.GetUser(user.getId()));
     }
 
 
     @PostMapping("/register")
-    public ResponseEntity register(@RequestBody @Valid User user){
-        userService.register(user);
+    public ResponseEntity register(@RequestBody @Valid RegisterForm registerForm){
+        userService.register(registerForm);
         return  ResponseEntity.status(201).body(new ApiResponse("User added!",201));
     }
 
@@ -52,7 +54,7 @@ public class UserController {
 
     }
 
-    @PostMapping("/isapproved")
+    @PostMapping("/isApproved")
     public ResponseEntity isApproved(@RequestParam @Valid Integer id){
         return ResponseEntity.status(200).body(userService.Approved(id));
     }

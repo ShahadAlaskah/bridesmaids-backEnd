@@ -1,14 +1,11 @@
 package com.example.bridesmaids.service;
 import com.example.bridesmaids.exception.ApiException;
-import com.example.bridesmaids.model.User;
 import com.example.bridesmaids.model.Vendor;
-import com.example.bridesmaids.repository.UserRepositry;
 import com.example.bridesmaids.repository.VendorRepositry;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.validation.Valid;
 import java.util.List;
