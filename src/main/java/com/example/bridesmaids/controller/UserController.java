@@ -21,6 +21,11 @@ public class UserController {
     public ResponseEntity getUsers(){;
         return  ResponseEntity.status(200).body(userService.getUsers());
     }
+    @GetMapping("/me")
+    public ResponseEntity me(@AuthenticationPrincipal User user){
+        user.setPassword("");
+        return ResponseEntity.status(200).body(user);
+    }
     @GetMapping("/getUser")
     public ResponseEntity getUser(@AuthenticationPrincipal User user){;
         return  ResponseEntity.status(200).body(userService.getUser(user.getId()));
@@ -39,8 +44,8 @@ public class UserController {
     }
 
     @PutMapping("/update/{id}")
-    public ResponseEntity updateUser(@AuthenticationPrincipal User user, @PathVariable Integer id){
-        userService.updateUser(user,id);
+    public ResponseEntity updateUser(@AuthenticationPrincipal User user,@RequestBody @Valid RegisterForm registerForm){
+        userService.updateUser(registerForm, user.getId()) ;
         return  ResponseEntity.status(200).body(new ApiResponse("User updated!",201));
     }
     @DeleteMapping("/delete/{id}")

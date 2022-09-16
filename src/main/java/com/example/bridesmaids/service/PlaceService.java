@@ -7,7 +7,6 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 
-import javax.validation.constraints.NotNull;
 import java.util.List;
 
 @Service
@@ -30,7 +29,8 @@ public class PlaceService {
             throw new ApiException("placeID not found");
         }
         oldPlace.setCapacity(place.getCapacity());
-        oldPlace.setLocation(place.getLocation());
+        oldPlace.setLng(place.getLng());
+        oldPlace.setLat(place.getLat());
         oldPlace.setProductId(place.getProductId());
         oldPlace.setCity(place.getCity());
         oldPlace.setCountry(place.getCountry());
