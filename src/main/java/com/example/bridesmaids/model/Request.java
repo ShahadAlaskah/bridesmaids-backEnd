@@ -10,7 +10,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
-import java.time.LocalDate;
+
 
 @AllArgsConstructor
 @NoArgsConstructor
@@ -20,7 +20,7 @@ public class Request {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
-    @NotNull
+
     private Integer userId;
     @NotNull
     private Integer vendorId;
@@ -30,7 +30,7 @@ public class Request {
     private String dateReceived;
     @NotEmpty
     private String bookDate;
-    @NotEmpty
+
     private String status;
     @NotEmpty
     private String wayToCommunicate;

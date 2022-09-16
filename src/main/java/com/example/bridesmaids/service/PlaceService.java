@@ -56,4 +56,15 @@ public class PlaceService {
         }
         return place;
     }
+
+    public Place getPlaceByProductId(Integer productId) {
+        Place place =placeRepository.findPlaceByProductId(productId);
+
+        if (place == null) {
+            throw new ApiException("productId not found");
+        }
+        return place;
+
+
+    }
 }
