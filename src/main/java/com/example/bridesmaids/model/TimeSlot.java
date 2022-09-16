@@ -24,7 +24,7 @@ public class TimeSlot {
 
     @NotNull(message = "time must not be empty!")
     @Future(message = "Date must be in the future")
-    private LocalDateTime time;
+    private String time;
 
     @NotNull
     // @Column(columnDefinition = "not null")
