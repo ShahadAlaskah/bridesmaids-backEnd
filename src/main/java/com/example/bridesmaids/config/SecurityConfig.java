@@ -42,7 +42,33 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .cors().configurationSource(corsConfigurationSource())
                 .and()
                 .authorizeRequests()
-                .antMatchers("/api/v1/user/register").permitAll()
+                .antMatchers("/api/v1/user/register"
+                        ,"/api/v1/Category/Category"
+                        ,"/api/v1/product/byVendorId","/api/v1/product/getByCategory/{categoryId}","/api/v1/product/getBySubCategory/{subCategoryId}"
+                        ,"/api/v1/product/byProduct","/api/v1/timeSlot/byProduct"
+                ).permitAll()
+                .antMatchers("/api/v1/product/get","/api/v1/picture/get","/api/v1/timeSlot/get","/api/v1/user/get","/api/v1/user/delete/{id}",
+                        "/api/v1/user/notApproved", "/api/v1/user/isApproved"
+                        ,"/api/v1/request/get","/api/v1/request/getAllByStatus/{status}"
+
+                ).hasAuthority("ADMIN")
+                .antMatchers("/api/v1/product/byVendorId","/api/v1/request/add"
+                        ,"/api/v1/request/getAllByUserId"
+                        ,"/api/v1/request/getAllByUserIdAndStatus/{status}"
+
+                ).hasAuthority("CUSTOMER")
+                .antMatchers("/api/v1/product/add",
+                "/api/v1/product/delete/{id}",
+                "/api/v1/product/update/{id}",
+               "/api/v1/product/myProducts","/api/v1/picture/add",
+              "/api/v1/picture/delete/{id}",
+               "/api/v1/picture/update/{id}","/api/v1/timeSlot/add",
+               " /api/v1/timeSlot/delete/{id}",
+               " /api/v1/timeSlot/update/{id}",
+                        "/api/v1/request/getAllByVendorId",
+                        "/api/v1/request/getAllByVendorIdAndAndStatus/{status}"
+                        ,"/api/v1/request/changeRequestStatus/{requestId}/{status}"
+                ).hasAuthority("VENDOR")
                 .anyRequest().authenticated()
                 .and()
                 .logout().logoutUrl("/api/v1/auth/logout/**").invalidateHttpSession(true).deleteCookies("JSESSIONID")

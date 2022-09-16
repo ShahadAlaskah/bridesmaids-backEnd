@@ -20,14 +20,15 @@ public class Place {
     private Integer id;
     @NotNull
     private Integer productId;
-    @NotEmpty
-    private String location;
+
     @NotEmpty
     private String city;
     @NotEmpty
     private String country;
     @NotNull
     private Integer capacity;
+    private String lat;
+    private String lng;
 
 
 }

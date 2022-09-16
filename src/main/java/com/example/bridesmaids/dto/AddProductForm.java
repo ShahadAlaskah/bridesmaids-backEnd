@@ -32,9 +32,11 @@ public class AddProductForm {
     @NotNull(message = "SubCategory Id must not be null!")
     private Integer subCategoryId;
 
-    private String location;
+
     private String city;
     private String country;
     private Integer capacity;
+    private String lat;
+    private String lng;
 
 }
