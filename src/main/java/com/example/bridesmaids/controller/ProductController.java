@@ -70,4 +70,10 @@ public class ProductController {
         List<Product> products = productService.findAllBySubCategoryId(subCategoryId);
         return ResponseEntity.status(200).body(products);
     }
+
+    @GetMapping("/byProductId/{id}")
+    public ResponseEntity<Product> findProductById(@PathVariable Integer id) {
+        Product product = productService.findProductById(id);
+        return ResponseEntity.status(200).body(product);
+    }
 }

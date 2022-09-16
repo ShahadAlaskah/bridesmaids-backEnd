@@ -113,5 +113,12 @@ public class ProductService {
         return productRepository.findAllBySubCategoryId(subCategoryId);
     }
 
+    public Product findProductById(Integer id){
+        Product product=productRepository.findProductById(id);
+        if(product==null) {
+            throw new ApiException("Wrong product ID!");
+        }
+        return product;
+    }
 }
 
