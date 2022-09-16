@@ -27,9 +27,9 @@ public class Request {
     @NotNull
     private Integer productId;
     @NotEmpty
-    private LocalDate dateReceived;
+    private String dateReceived;
     @NotEmpty
-    private LocalDate bookDate;
+    private String bookDate;
     @NotEmpty
     private String status;
     @NotEmpty
