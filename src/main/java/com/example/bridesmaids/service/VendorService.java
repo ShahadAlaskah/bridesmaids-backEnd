@@ -16,23 +16,23 @@ import java.util.List;
 public class VendorService {
     private final VendorRepositry vendorRepositry;
 
-    public List<Vendor> GetVendors() {
+    public List<Vendor> getVendors() {
 
             return vendorRepositry.findAll();
     }
 
 
-    public Vendor GetVendor(@PathVariable Integer id){
+    public Vendor getVendor(Integer id){
        Vendor vendor=vendorRepositry.findVendorById(id);
         if(vendor==null){
             throw new ApiException("Wrong id");
         }
       return vendor;
     }
-    public void AddVendor(@Valid @RequestBody Vendor vendor) {;
+    public void addVendor(@Valid @RequestBody Vendor vendor) {;
         vendorRepositry.save(vendor);
     }
-    public Vendor UpdateVendor(@RequestBody @Valid Vendor vendor, @PathVariable Integer id) {
+    public Vendor updateVendor(@RequestBody @Valid Vendor vendor, @PathVariable Integer id) {
      Vendor newVendor = vendorRepositry.findVendorById(id);
     if(newVendor==null){
         throw new ApiException("Wrong ID");

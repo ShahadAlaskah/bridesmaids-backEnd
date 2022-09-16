@@ -1,6 +1,7 @@
 package com.example.bridesmaids.controller;
 import com.example.bridesmaids.dto.ApiResponse;
 import com.example.bridesmaids.dto.RegisterForm;
+import com.example.bridesmaids.model.Customer;
 import com.example.bridesmaids.model.User;
 import com.example.bridesmaids.service.UserService;
 import lombok.AllArgsConstructor;
@@ -16,13 +17,13 @@ import javax.validation.Valid;
 public class UserController {
     private final UserService userService;
 
-    @GetMapping("/users")
-    public ResponseEntity GetUsers(){;
-        return  ResponseEntity.status(200).body(userService.GetUsers());
+    @GetMapping("/get")
+    public ResponseEntity getUsers(){;
+        return  ResponseEntity.status(200).body(userService.getUsers());
     }
-    @GetMapping("/user")
-    public ResponseEntity GetUser(@AuthenticationPrincipal User user){;
-        return  ResponseEntity.status(200).body(userService.GetUser(user.getId()));
+    @GetMapping("/getUser")
+    public ResponseEntity getUser(@AuthenticationPrincipal User user){;
+        return  ResponseEntity.status(200).body(userService.getUser(user.getId()));
     }
 
 
@@ -32,30 +33,30 @@ public class UserController {
         return  ResponseEntity.status(201).body(new ApiResponse("User added!",201));
     }
 
-//    @PostMapping("/login")
-//    public ResponseEntity login(){
-//        return ResponseEntity.status(200).body(new ApiResponse("Welcome back !",200));
-//    }
+    @PostMapping("/login")
+    public ResponseEntity login(){
+        return ResponseEntity.status(200).body(new ApiResponse("Welcome back !",200));
+    }
 
-    @PutMapping("/{id}")
-    public ResponseEntity UpdateUser(@RequestBody @Valid  User user, @PathVariable Integer id){
+    @PutMapping("/update/{id}")
+    public ResponseEntity updateUser(@AuthenticationPrincipal User user, @PathVariable Integer id){
         userService.updateUser(user,id);
         return  ResponseEntity.status(200).body(new ApiResponse("User updated!",201));
     }
-    @DeleteMapping("/{id}")
-    public ResponseEntity deleteCustomer(@PathVariable  Integer id,User user){
-        userService.deleteuser(id);
+    @DeleteMapping("/delete/{id}")
+    public ResponseEntity deleteCustomer(@PathVariable Integer id , @AuthenticationPrincipal Customer customer){
+        userService.deleteUser(id);
         return  ResponseEntity.status(200).body(new ApiResponse("User deleted!",201));
     }
 
-    @GetMapping("/notapproved")
-    public ResponseEntity NotApproved (){
-        return ResponseEntity.status(200).body(userService.NotApproved());
+    @GetMapping("/notApproved")
+    public ResponseEntity notApproved (){
+        return ResponseEntity.status(200).body(userService.notApproved());
 
     }
 
     @PostMapping("/isApproved")
     public ResponseEntity isApproved(@RequestParam @Valid Integer id){
-        return ResponseEntity.status(200).body(userService.Approved(id));
+        return ResponseEntity.status(200).body(userService.approved(id));
     }
 }
