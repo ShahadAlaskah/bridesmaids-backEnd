@@ -1,13 +1,9 @@
 package com.example.bridesmaids.service;
 
+import com.example.bridesmaids.dto.AddProductForm;
 import com.example.bridesmaids.exception.ApiException;
-import com.example.bridesmaids.model.Category;
-import com.example.bridesmaids.model.Product;
-import com.example.bridesmaids.model.SubCategory;
-import com.example.bridesmaids.repository.CategoryRepository;
-import com.example.bridesmaids.repository.ProductRepository;
-import com.example.bridesmaids.repository.SubCategoryRepository;
-import com.example.bridesmaids.repository.UserRepository;
+import com.example.bridesmaids.model.*;
+import com.example.bridesmaids.repository.*;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -19,62 +15,84 @@ public class ProductService {
 
     private final ProductRepository productRepository;
     private final SubCategoryRepository subCategoryRepository;
-    private final UserRepository userRepository;
     private final CategoryRepository categoryRepository;
+    private final VendorRepositry vendorRepositry;
+    private final PlaceRepository placeRepository;
 
 
     public List<Product> getProducts() {
         return productRepository.findAll();
     }
 
-
-    public void addProduct(Product product /*, User user*/) {
-        Category category=categoryRepository.findCategoryById(product.getCategoryId());
-        SubCategory subCategory=subCategoryRepository.findSubCategoriesById(product.getSubCategoryId());
+    public void addProduct(AddProductForm addProductForm , User user) {
+        Category category=categoryRepository.findCategoryById(addProductForm.getCategoryId());
+        SubCategory subCategory=subCategoryRepository.findSubCategoriesById(addProductForm.getSubCategoryId());
         if (category==null){
             throw new ApiException("Wrong category id");
         }
         if (subCategory==null){
             throw new ApiException("Wrong subCategory id");
         }
-//        product.setVendorId(user.getId());
+
+        Product product=new Product(null,user.getId(), addProductForm.getName(), addProductForm.getDescription(), addProductForm.getPrice(), addProductForm.getCategoryId(),addProductForm.getSubCategoryId());
         productRepository.save(product);
+
+        if (addProductForm.getCategoryId().equals(1)){
+            Place place=new Place(null,product.getId(), addProductForm.getLocation(), addProductForm.getCity(), addProductForm.getCountry(), addProductForm.getCapacity());
+            placeRepository.save(place);
+        }
+
     }
 
-    public void deleteProduct(Integer id /*, User user*/) {
+    public void deleteProduct(Integer id , User user) {
         Product product=productRepository.findProductById(id);
-        if(product==null){
+        Vendor vendor=vendorRepositry.findVendorByUserId(user.getId());
+        if(product==null) {
             throw new ApiException("Wrong product ID!");
         }
-//        if (product.getVendorId()!=user.getId()){
-//            throw new ApiException("Sorry , You do not have the authority to delete the product");
-//        }
+        if (product.getVendorId().equals(vendor.getId())){
+            throw new ApiException("Sorry , You do not have the authority to delete the product");
+        }
+
+        Place place=placeRepository.findPlaceByProductId(id);
+        placeRepository.delete(place);
         productRepository.delete(product);
     }
 
-    public void updateProduct(Integer id, Product product /*, User user*/) {
+    public void updateProduct(Integer id, AddProductForm addProductForm , User user) {
         Product product1=productRepository.findProductById(id);
+        Vendor vendor=vendorRepositry.findVendorByUserId(user.getId());
+        Place oldPlace=placeRepository.findPlaceByProductId(id);
+
         if(product1==null){
             throw new ApiException("Wrong product ID!");
         }
-//        if (product1.getStoreId()!=user.getId()){
-//            throw new ApiException("Sorry , You do not have the authority to update the product");
-//        }
-        product1.setName(product.getName());
-        product1.setDescription(product.getDescription());
-        product1.setSubCategoryId(product.getSubCategoryId());
-        product1.setPrice(product.getPrice());
+        if (product1.getVendorId().equals(vendor.getId())){
+            throw new ApiException("Sorry , You do not have the authority to update the product");
+        }
+
+
+        product1.setName(addProductForm.getName());
+        product1.setDescription(addProductForm.getDescription());
+        product1.setSubCategoryId(addProductForm.getSubCategoryId());
+        product1.setPrice(addProductForm.getPrice());
+
+        oldPlace.setCapacity(addProductForm.getCapacity());
+        oldPlace.setLocation(addProductForm.getLocation());
+        oldPlace.setCity(addProductForm.getCity());
+        oldPlace.setCountry(addProductForm.getCountry());
+
+        placeRepository.save(oldPlace);
 
         productRepository.save(product1);
     }
 
-//    public List<Product> getMyProducts(User user){
-//        return productRepository.findAllByVendorId(user.getId());
-//    }
+    public List<Product> getMyProducts(User user){
+        return productRepository.findAllByVendorId(user.getId());
+    }
 
-    /////commmment
     public List<Product> findAllByVendorId(Integer vendorId){
-        if(userRepository.findUserById(vendorId)==null){
+        if(vendorRepositry.findVendorById(vendorId)==null){
             throw new ApiException("Wrong vendorId");
         }
         return productRepository.findAllByVendorId(vendorId);

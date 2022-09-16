@@ -8,8 +8,7 @@ import org.hibernate.validator.constraints.URL;
 import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Pattern;
-import java.util.UUID;
+
 
 @AllArgsConstructor
 @NoArgsConstructor
