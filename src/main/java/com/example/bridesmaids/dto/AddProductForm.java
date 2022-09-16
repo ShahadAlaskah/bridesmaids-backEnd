@@ -1,25 +1,16 @@
-package com.example.bridesmaids.model;
+package com.example.bridesmaids.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
-import lombok.NoArgsConstructor;
 
-import javax.persistence.*;
+import javax.persistence.Column;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Positive;
 import javax.validation.constraints.Size;
 
-@AllArgsConstructor
-@NoArgsConstructor
-@Data
-@Entity
-public class Product {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
-
-    private Integer vendorId;
+@AllArgsConstructor @Data
+public class AddProductForm {
 
     @NotEmpty(message = "Name must not be empty!")
     @Size(min = 3, message = "Name have to be 3 character long at least!")
@@ -40,5 +31,10 @@ public class Product {
 
     @NotNull(message = "SubCategory Id must not be null!")
     private Integer subCategoryId;
-}
 
+    private String location;
+    private String city;
+    private String country;
+    private Integer capacity;
+
+}

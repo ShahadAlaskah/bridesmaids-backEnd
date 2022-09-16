@@ -7,8 +7,7 @@ import lombok.NoArgsConstructor;
 import javax.persistence.*;
 import javax.validation.constraints.Future;
 import javax.validation.constraints.NotNull;
-import java.time.LocalDateTime;
-import java.util.UUID;
+
 
 @AllArgsConstructor
 @NoArgsConstructor
