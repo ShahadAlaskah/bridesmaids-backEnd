@@ -44,9 +44,9 @@ public class PictureController {
         return ResponseEntity.status(200).body(new ApiResponse("Picture Updated Successfully!" , 200));
     }
 
-    @GetMapping("/byProduct")
-    public ResponseEntity<List<Picture>> getPicturesByProduct(@RequestBody Integer productId){
-       List<Picture> pictures=pictureService.getPicturesByProduct(productId);
+    @GetMapping("/byProduct/{id}")
+    public ResponseEntity<List<Picture>> getPicturesByProduct(@PathVariable Integer id){
+       List<Picture> pictures=pictureService.getPicturesByProduct(id);
         return ResponseEntity.status(200).body(pictures);
     }
 }
