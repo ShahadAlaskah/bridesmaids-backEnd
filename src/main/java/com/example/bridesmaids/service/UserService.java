@@ -101,8 +101,8 @@ public class UserService {
         return user.getIsApproved();
     }
 
-    public User notApproved(){
-        return userRepositry.findUserByIsApproved();
+    public List<User> notApproved(){
+        return userRepositry.findAllByIsApproved();
     }
 
 
