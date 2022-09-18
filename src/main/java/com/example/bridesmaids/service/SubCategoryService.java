@@ -43,4 +43,8 @@ public List<SubCategory> GetSubCategory(){
         subCategoryRepository.delete(checkSubCategory);
     }
 
+    public List<SubCategory> getAllByCategoryid(Integer categoryId) {
+        List<SubCategory> subCategoryList = subCategoryRepository.findAllByCategoryid(categoryId);
+       return subCategoryList;
+    }
 }

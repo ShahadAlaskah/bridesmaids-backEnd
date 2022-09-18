@@ -3,6 +3,7 @@ package com.example.bridesmaids.service;
 import com.example.bridesmaids.exception.ApiException;
 import com.example.bridesmaids.model.Request;
 import com.example.bridesmaids.repository.RequestRepository;
+import com.example.bridesmaids.repository.UserRepository;
 import com.example.bridesmaids.repository.VendorRepositry;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -14,6 +15,7 @@ import java.util.List;
 public class RequestService {
     private final RequestRepository requestRepository;
     private final VendorRepositry vendorRepositry;
+    private final UserRepository userRepository;
 
     public List<Request> getRequests() {
         return requestRepository.findAll();
@@ -102,5 +104,23 @@ public class RequestService {
 
     public List<Request> getAllByUserIdAndStatus(Integer id, String status) {
         return requestRepository.findAllByUserIdAndStatus(id,status);
+    }
+
+    public List<Request> getAllByVendorIdAndStatusIsNotLike(Integer userId, String status) {
+        Integer vendorId=vendorRepositry.findVendorByUserId(userId).getId();
+        List<Request> requestList  = requestRepository.findAllByVendorIdAndStatusIsNotLike(vendorId,status);
+        if (requestList == null) {
+            throw new ApiException("vendorId not found");
+        }
+        return requestList;
+    }
+
+    public List<Request> getAllByUserIdAndStatusNotLike(Integer userId, String status) {
+
+        List<Request> requestList  = requestRepository.findAllByUserIdAndStatusNotLike(userId,status);
+        if (requestList == null) {
+            throw new ApiException("userId not found");
+        }
+        return requestList;
     }
 }
