@@ -31,6 +31,11 @@ public class UserController {
         return  ResponseEntity.status(200).body(userService.getUser(user.getId()));
     }
 
+    @GetMapping("/getUser/{id}")
+    public ResponseEntity getUserById(@PathVariable Integer id){;
+        return  ResponseEntity.status(200).body(userService.getUser(id));
+    }
+
 
     @PostMapping("/register")
     public ResponseEntity register(@RequestBody @Valid RegisterForm registerForm){
