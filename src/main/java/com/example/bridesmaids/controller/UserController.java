@@ -69,4 +69,9 @@ public class UserController {
     public ResponseEntity isApproved(@RequestParam @Valid Integer id){
         return ResponseEntity.status(200).body(userService.approved(id));
     }
+
+    @GetMapping("/byVendor/{id}")
+    public ResponseEntity byVendorId(@PathVariable Integer id){
+        return  ResponseEntity.status(200).body(userService.byVendorId(id));
+    }
 }

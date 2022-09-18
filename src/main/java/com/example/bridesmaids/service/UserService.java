@@ -106,4 +106,10 @@ public class UserService {
     }
 
 
+    public User byVendorId(Integer id){
+        Vendor vendor=vendorRepositry.findVendorById(id);
+        return userRepositry.findUserById(vendor.getUserId());
+    }
+
+
 }
