@@ -87,4 +87,16 @@ public class RequestController {
         requestService.changeRequestStatus(requestId,status);
         return ResponseEntity.status(200).body(new ApiResponse("request status updated !",201));
     }
+    // VENDOR
+    @GetMapping("/getAllByVendorIdAndStatusIsNotLike")
+    public ResponseEntity<List<Request>> getAllByVendorIdAndStatusIsNotLike(@AuthenticationPrincipal User user){
+        List<Request> requestArrayList = requestService.getAllByVendorIdAndStatusIsNotLike(user.getId(), "confirmedByCustomer");
+        return ResponseEntity.status(200).body(requestArrayList);
+    }
+    // CUSTOMER
+    @GetMapping("/getAllByUserIdAndStatusNotLike")
+    public ResponseEntity<List<Request>> getAllByUserIdAndStatusNotLike(@AuthenticationPrincipal User user){
+        List<Request> requestArrayList = requestService.getAllByUserIdAndStatusNotLike(user.getId(), "confirmedByCustomer");
+        return ResponseEntity.status(200).body(requestArrayList);
+    }
 }

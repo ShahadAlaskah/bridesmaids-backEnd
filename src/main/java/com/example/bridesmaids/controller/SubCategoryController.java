@@ -40,4 +40,9 @@ public class SubCategoryController {
 
         return  ResponseEntity.status(201).body(new ApiResponse("SubCategory deleted!",201));
     }
+    @GetMapping("/getAllByCategoryid/{categoryId}")
+    public ResponseEntity getAllByCategoryid(@PathVariable  Integer categoryId){
+        List<SubCategory> subCategoryList =subCategoryService.getAllByCategoryid(categoryId);
+        return ResponseEntity.status(200).body(subCategoryList);
+    }
 }
