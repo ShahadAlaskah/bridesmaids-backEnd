@@ -68,8 +68,10 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                " /api/v1/timeSlot/update/{id}",
                         "/api/v1/request/getAllByVendorId",
                         "/api/v1/request/getAllByVendorIdAndAndStatus/{status}"
-                        ,"/api/v1/request/changeRequestStatus/{requestId}/{status}"
+
                 ).hasAuthority("VENDOR")
+                .antMatchers("/api/v1/request/changeRequestStatus/{requestId}/{status}"
+                ).hasAnyAuthority("CUSTOMER","VENDOR")
                 .anyRequest().authenticated()
                 .and()
                 .logout().logoutUrl("/api/v1/auth/logout/**").invalidateHttpSession(true).deleteCookies("JSESSIONID")

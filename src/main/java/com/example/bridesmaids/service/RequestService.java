@@ -92,6 +92,7 @@ public class RequestService {
             throw new ApiException("requestId not found");
         }
         request.setStatus(status);
+        requestRepository.save(request);
     }
 
     public List<Request> getAllByStatus(String status) {
