@@ -66,8 +66,9 @@ public class TimeSlotService {
             throw new ApiException("Sorry , You do not have the authority to update this time slot");
         }
 
-        timeSlot1.setTime(timeSlot.getTime());
-        timeSlot1.setIsAvailable(timeSlot.getIsAvailable());
+        timeSlot1.setYear(timeSlot.getYear());
+        timeSlot1.setMonth(timeSlot.getMonth());
+        timeSlot1.setDay(timeSlot.getDay());
         timeSlotRepository.save(timeSlot1);
     }
 

@@ -21,5 +21,5 @@ public class SubCategory {
 private Integer id;
     @NotEmpty(message = "name can not be empty")
     private  String name;
-    private String categoryid;
+    private Integer categoryid;
 }
