@@ -23,8 +23,8 @@ public class AddProductForm {
 
     @NotNull(message = "Price must not be null!")
     @Positive(message = "Price must be positive number!")
-    @Column(columnDefinition = "Double not null")
-    private Double price;
+    @Column(columnDefinition = "float not null")
+    private Float price;
 
     @NotNull(message = "Category Id must not be null!")
     private Integer categoryId;
