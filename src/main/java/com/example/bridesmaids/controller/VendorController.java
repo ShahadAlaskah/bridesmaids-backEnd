@@ -21,6 +21,10 @@ public class VendorController {
     public ResponseEntity getVendors(){;
         return  ResponseEntity.status(200).body(vendorService.getVendors());
     }
+    @GetMapping("/getVendorByUserId/{userId}")
+    public ResponseEntity<Vendor> getVendorByUserId(@PathVariable Integer userId ){;
+        return  ResponseEntity.status(200).body(vendorService.getVendorByUserId(userId));
+    }
 
     @GetMapping("/get/{id}")
     public ResponseEntity getVendor(@PathVariable Integer id , @AuthenticationPrincipal User user){

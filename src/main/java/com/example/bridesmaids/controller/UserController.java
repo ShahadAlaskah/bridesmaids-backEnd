@@ -65,8 +65,8 @@ public class UserController {
 
     }
 
-    @PostMapping("/isApproved")
-    public ResponseEntity isApproved(@RequestParam @Valid Integer id){
+    @PostMapping("/isApproved/{id}")
+    public ResponseEntity isApproved(@PathVariable @Valid Integer id){
         return ResponseEntity.status(200).body(userService.approved(id));
     }
 
