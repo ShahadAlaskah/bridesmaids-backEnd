@@ -29,10 +29,10 @@ public class VendorService {
         }
       return vendor;
     }
-    public void addVendor(@Valid @RequestBody Vendor vendor) {;
+    public void addVendor( Vendor vendor) {;
         vendorRepositry.save(vendor);
     }
-    public Vendor updateVendor(@RequestBody @Valid Vendor vendor, @PathVariable Integer id) {
+    public Vendor updateVendor( Vendor vendor,  Integer id) {
      Vendor newVendor = vendorRepositry.findVendorById(id);
     if(newVendor==null){
         throw new ApiException("Wrong ID");
@@ -43,7 +43,7 @@ public class VendorService {
         return vendorRepositry.save(newVendor);
     }
     }
-    public void deleteVendor(@Valid @PathVariable Integer id) {
+    public void deleteVendor( Integer id) {
             Vendor vendor=vendorRepositry.findVendorById(id);
               if(id==null){
         throw new ApiException("Wrong ID");
@@ -52,5 +52,9 @@ public class VendorService {
     }
 
 }
+
+    public Vendor getVendorByUserId(Integer userId) {
+        return vendorRepositry.findVendorByUserId(userId);
+    }
 }
 
