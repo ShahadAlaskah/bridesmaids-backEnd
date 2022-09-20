@@ -44,8 +44,8 @@ public class UserController {
     }
 
     @PostMapping("/login")
-    public ResponseEntity login(){
-        return ResponseEntity.status(200).body(new ApiResponse("Welcome back !",200));
+    public ResponseEntity login(@AuthenticationPrincipal User user){
+        return ResponseEntity.status(200).body(user);
     }
 
     @PutMapping("/update/{id}")

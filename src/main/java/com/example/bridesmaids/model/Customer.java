@@ -17,8 +17,8 @@ public class Customer {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     private Integer userId;
-    @NotNull(message = "age cannot be empty")
+    @NotNull(message = "الرجاء تعبئة العمر")
     private Integer age;
-    @Column(columnDefinition = "varchar(1) check (gender='F' or gender='M') ")
+    @Column(columnDefinition = "varchar(1) check (gender='F' or gender='M') " )
     private String gender;
 }
