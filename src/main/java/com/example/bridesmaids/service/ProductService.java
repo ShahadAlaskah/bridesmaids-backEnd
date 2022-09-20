@@ -38,7 +38,7 @@ public class ProductService {
         productRepository.save(product);
 
         if (addProductForm.getCategoryId().equals(1)){
-            Place place=new Place(null,product.getId(), addProductForm.getCity(), addProductForm.getCountry(), addProductForm.getCapacity(), addProductForm.getLat(), addProductForm.getLng());
+            Place place=new Place(null,product.getId(), addProductForm.getCity(), addProductForm.getCapacity(), addProductForm.getLat(), addProductForm.getLng());
             placeRepository.save(place);
         }
 
@@ -81,7 +81,6 @@ public class ProductService {
         oldPlace.setLat(addProductForm.getLat());
         oldPlace.setLng(addProductForm.getLng());
         oldPlace.setCity(addProductForm.getCity());
-        oldPlace.setCountry(addProductForm.getCountry());
 
         placeRepository.save(oldPlace);
 

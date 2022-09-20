@@ -33,7 +33,6 @@ public class PlaceService {
         oldPlace.setLat(place.getLat());
         oldPlace.setProductId(place.getProductId());
         oldPlace.setCity(place.getCity());
-        oldPlace.setCountry(place.getCountry());
 
         placeRepository.save(oldPlace);
 

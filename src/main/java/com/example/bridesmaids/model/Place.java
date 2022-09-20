@@ -23,8 +23,6 @@ public class Place {
 
     @NotEmpty
     private String city;
-    @NotEmpty
-    private String country;
     @NotNull
     private Integer capacity;
     private String lat;
