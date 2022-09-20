@@ -20,6 +20,7 @@ public class Product {
     private Integer id;
 
     private Integer vendorId;
+    private Integer userId;
 
     @NotEmpty(message = "Name must not be empty!")
     @Size(min = 3, message = "Name have to be 3 character long at least!")
@@ -41,4 +42,3 @@ public class Product {
     @NotNull(message = "SubCategory Id must not be null!")
     private Integer subCategoryId;
 }
-
