@@ -22,10 +22,14 @@ public class TimeSlot {
     private Integer productId;
 
     @NotNull(message = "time must not be empty!")
-    @Future(message = "Date must be in the future")
-    private String time;
+    private String year;
 
-    @NotNull
-    // @Column(columnDefinition = "not null")
-    private Boolean isAvailable=true;
+    @NotNull(message = "time must not be empty!")
+    private String month;
+
+    @NotNull(message = "time must not be empty!")
+    private String day;
+
+
+
 }
