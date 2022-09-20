@@ -44,9 +44,9 @@ public class TimeSlotController {
         return ResponseEntity.status(200).body(new ApiResponse("Time Slot Updated Successfully!",200));
     }
 
-    @GetMapping("/byProduct")
-    public ResponseEntity<List<TimeSlot>> getTimeSlotByProduct(@RequestBody Integer productId){
-        List<TimeSlot> timeSlots=timeSlotService.getTimeSlotByProduct(productId);
+    @GetMapping("/byProduct/{id}")
+    public ResponseEntity<List<TimeSlot>> getTimeSlotByProduct(@PathVariable Integer id){
+        List<TimeSlot> timeSlots=timeSlotService.getTimeSlotByProduct(id);
         return ResponseEntity.status(200).body(timeSlots);
     }
 

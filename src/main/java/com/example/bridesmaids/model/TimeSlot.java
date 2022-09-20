@@ -22,13 +22,13 @@ public class TimeSlot {
     private Integer productId;
 
     @NotNull(message = "time must not be empty!")
-    private String year;
+    private Integer year;
 
     @NotNull(message = "time must not be empty!")
-    private String month;
+    private Integer month;
 
     @NotNull(message = "time must not be empty!")
-    private String day;
+    private Integer day;
 
 
 
