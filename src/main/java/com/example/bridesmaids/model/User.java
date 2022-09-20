@@ -27,12 +27,12 @@ public class User implements UserDetails {
     private String username;
     private String name;
     @NotEmpty(message = "password cannot be empty")
-//    @Pattern(regexp = "^(?=.*\\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,}$")
+    @Pattern(regexp = "^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$")
     private String password;
     @Pattern(regexp = "(ADMIN|CUSTOMER|VENDOR)")
     private String role;
     @NotEmpty(message = "email cannot be empty")
-    @Email
+    @Email(message ="email cannot be empty")
     @Column(unique = true)
     private String email;
     @Range(min = 10, message = "phone number need to be at least 10 digits")
