@@ -30,6 +30,10 @@ public class VendorService {
         }
       return vendor;
     }
+
+    public Vendor getVendor2(User user){
+        return vendorRepositry.findVendorById(user.getId());
+    }
     public void addVendor( Vendor vendor) {;
         vendorRepositry.save(vendor);
     }

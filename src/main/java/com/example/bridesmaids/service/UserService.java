@@ -69,7 +69,7 @@ public class UserService {
             customerRepositry.save(customer);
         }else if (newUser.getRole().equals("VENDOR")){
             Vendor vendor=vendorRepositry.findVendorByUserId(id);
-            vendor.setPic(registerForm.getPic());
+           // vendor.setPic(registerForm.getPic());
             vendor.setAbout(registerForm.getAbout());
             vendor.setMaeroufNumber(registerForm.getMaeroufNumber());
             vendorRepositry.save(vendor);
