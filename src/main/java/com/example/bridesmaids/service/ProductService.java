@@ -51,7 +51,7 @@ public class ProductService {
         if(product==null) {
             throw new ApiException("Wrong product ID!");
         }
-        if (product.getVendorId().equals(vendor.getId())){
+        if (!product.getVendorId().equals(vendor.getId())){
             throw new ApiException("Sorry , You do not have the authority to delete the product");
         }
 
@@ -68,7 +68,7 @@ public class ProductService {
         if(product1==null){
             throw new ApiException("Wrong product ID!");
         }
-        if (product1.getVendorId().equals(vendor.getId())){
+        if (!product1.getVendorId().equals(vendor.getId())){
             throw new ApiException("Sorry , You do not have the authority to update the product");
         }
 

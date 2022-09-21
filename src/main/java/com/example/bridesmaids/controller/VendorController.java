@@ -31,6 +31,11 @@ public class VendorController {
         return  ResponseEntity.status(200).body(vendorService.getVendor(id));
     }
 
+    @GetMapping("/get-vendor")
+    public ResponseEntity getVendor2(@AuthenticationPrincipal User user){
+        return  ResponseEntity.status(200).body(vendorService.getVendor2(user));
+    }
+
     @PostMapping
     public ResponseEntity addVendor(@RequestBody @Valid Vendor vendor){
         vendorService.addVendor(vendor);
