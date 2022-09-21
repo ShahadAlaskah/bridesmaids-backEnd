@@ -78,7 +78,7 @@ public class UserService {
             newUser.setUsername(registerForm.getUsername());
             newUser.setName(registerForm.getName());
             newUser.setEmail(registerForm.getEmail());
-            newUser.setPassword(registerForm.getPassword());
+            //newUser.setPassword(registerForm.getPassword());
             newUser.setPhoneNumber(registerForm.getPhoneNumber());
             return userRepositry.save(newUser);
 
