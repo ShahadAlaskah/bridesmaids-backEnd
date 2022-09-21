@@ -25,7 +25,8 @@ public class RegisterForm {
     private String email;
     @Size(min=10,max=10, message = "رقم الهاتف يجب ان يكون مكون من 10 ارقام")
     private String phoneNumber;
-    private String location;
+    private String lat;
+    private String lng;
     private Boolean isApproved;
     private String pic;
     @Column(unique = true)

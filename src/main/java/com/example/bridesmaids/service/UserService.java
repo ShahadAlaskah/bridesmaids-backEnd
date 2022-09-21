@@ -45,7 +45,7 @@ public class UserService {
        }else{
            registerForm.setIsApproved(true);
        }
-       User user=new User(null,registerForm.getUsername(),registerForm.getName(),registerForm.getPassword(),registerForm.getRole(),registerForm.getEmail(),registerForm.getPhoneNumber(),registerForm.getLocation(),registerForm.getIsApproved());
+       User user=new User(null,registerForm.getUsername(),registerForm.getName(),registerForm.getPassword(),registerForm.getRole(),registerForm.getEmail(),registerForm.getPhoneNumber(),registerForm.getLng(), registerForm.getLat(), registerForm.getIsApproved());
         userRepositry.save(user);
 
         if(user.getRole().equals("VENDOR")){
@@ -109,6 +109,26 @@ public class UserService {
     public User byVendorId(Integer id){
         Vendor vendor=vendorRepositry.findVendorById(id);
         return userRepositry.findUserById(vendor.getUserId());
+    }
+
+    public Boolean checkEmail(String email){
+      User user=userRepositry.findUserByEmail(email);
+      if(user==null){
+          return false;
+      }else{
+          return true;
+      }
+
+    }
+
+    public Boolean checkUsername(String username){
+        User user=userRepositry.findUserByUsername(username);
+        if(user==null){
+            return false;
+        }else{
+            return true;
+        }
+
     }
 
 

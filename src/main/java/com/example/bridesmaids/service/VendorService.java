@@ -1,5 +1,6 @@
 package com.example.bridesmaids.service;
 import com.example.bridesmaids.exception.ApiException;
+import com.example.bridesmaids.model.User;
 import com.example.bridesmaids.model.Vendor;
 import com.example.bridesmaids.repository.VendorRepositry;
 import lombok.AllArgsConstructor;
@@ -56,5 +57,14 @@ public class VendorService {
     public Vendor getVendorByUserId(Integer userId) {
         return vendorRepositry.findVendorByUserId(userId);
     }
+
+    public Boolean checkMaeroufNumber(String MaeroufNumber){
+        Vendor vendor=vendorRepositry.findVendorByMaeroufNumber(MaeroufNumber);
+        if(vendor==null){
+            return false;
+        }else
+            return  true;
+    }
 }
+
 
