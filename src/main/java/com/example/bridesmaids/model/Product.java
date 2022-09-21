@@ -18,7 +18,7 @@ public class Product {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
-
+    private  Integer userId;
     private Integer vendorId;
 
     @NotEmpty(message = "Name must not be empty!")

@@ -24,6 +24,11 @@ public class CustomerController {
         return  ResponseEntity.status(200).body(customerService.getCustomer(id));
     }
 
+    @GetMapping("/getcustomer")
+    public ResponseEntity getCustomer2(@AuthenticationPrincipal User user){;
+        return  ResponseEntity.status(200).body(customerService.getCustomer2(user));
+    }
+
 
     @PostMapping("/add")
     public ResponseEntity addCustomer(@RequestBody @Valid Customer customer){

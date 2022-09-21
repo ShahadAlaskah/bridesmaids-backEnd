@@ -48,7 +48,7 @@ public class UserController {
         return ResponseEntity.status(200).body(user);
     }
 
-    @PutMapping("/update/{id}")
+    @PutMapping("/update")
     public ResponseEntity updateUser(@AuthenticationPrincipal User user,@RequestBody @Valid RegisterForm registerForm){
         userService.updateUser(registerForm, user.getId()) ;
         return  ResponseEntity.status(200).body(new ApiResponse("User updated!",201));

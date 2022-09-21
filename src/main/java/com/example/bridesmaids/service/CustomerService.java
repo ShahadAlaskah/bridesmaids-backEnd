@@ -1,6 +1,7 @@
 package com.example.bridesmaids.service;
 import com.example.bridesmaids.exception.ApiException;
 import com.example.bridesmaids.model.Customer;
+import com.example.bridesmaids.model.User;
 import com.example.bridesmaids.repository.CustomerRepositry;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -21,6 +22,10 @@ public class CustomerService {
         } else {
             return customer;
         }
+    }
+
+    public Customer getCustomer2(User user){
+        return customerRepositry.findCustomerByUserId(user.getId());
     }
 
     public List<Customer> getCustomers() {

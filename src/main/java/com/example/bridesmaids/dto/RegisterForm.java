@@ -14,7 +14,7 @@ public class RegisterForm {
     @NotEmpty(message = "الرجاء تعبئة اسم المستخدم")
     private String username;
     private String name;
-    @NotEmpty(message = "الرجاء تعبئة الرمز السري")
+   // @NotEmpty(message = "الرجاء تعبئة الرمز السري")
    @Pattern(regexp = "^(?=.*\\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,}$", message="كلمة السر يجب ان تكون مكونه من 8 عناصر على الاقل حرف واحد كبير وحرف واحد صغير واحدى هذي العلامات(#?!@$%^&*-)")
     private String password;
     @Pattern(regexp = "(ADMIN|CUSTOMER|VENDOR)")
