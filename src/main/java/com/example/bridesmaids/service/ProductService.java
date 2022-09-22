@@ -35,7 +35,7 @@ public class ProductService {
             throw new ApiException("Wrong subCategory id");
         }
 
-        Product product=new Product(null,user.getId(), vendor.getUserId(),  addProductForm.getName(), addProductForm.getDescription(), addProductForm.getPrice(), addProductForm.getCategoryId(),addProductForm.getSubCategoryId());
+        Product product=new Product(null,user.getId(), vendor.getId(),  addProductForm.getName(), addProductForm.getDescription(), addProductForm.getPrice(), addProductForm.getCategoryId(),addProductForm.getSubCategoryId());
         productRepository.save(product);
 
         if (addProductForm.getCategoryId().equals(1)){
