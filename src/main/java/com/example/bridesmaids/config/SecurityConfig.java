@@ -44,7 +44,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .authorizeRequests()
                 .antMatchers("/api/v1/user/register"
                         ,"/api/v1/Category/Category"
-                        ,"/api/v1/product/byVendorId","/api/v1/product/getByCategory/{categoryId}","/api/v1/product/getBySubCategory/{subCategoryId}"
+                        ,"/api/v1/product/byVendorId/{id}","/api/v1/product/getByCategory/{categoryId}","/api/v1/product/getBySubCategory/{subCategoryId}"
                         ,"/api/v1/product/byProduct","/api/v1/timeSlot/byProduct/{id}","/api/v1/product/byProductId/{id}","/api/v1/picture/byProduct/{id}","/api/v1/vendor/get/{id}" , "/api/v1/user/getUser/{id}","/api/v1/user/byVendor/{id}",
                         "/api/v1/place/getPlaceByProductId/{id}","/api/v1/user/checkemail/{email}","/api/v1/user/checkusername/{username}","/api/v1/vendor/checkmaerouf/{number}"
                 ).permitAll()
