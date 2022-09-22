@@ -38,6 +38,7 @@ public class Product {
     @NotNull(message = "Category Id must not be null!")
     private Integer categoryId;
 
+
     @NotNull(message = "SubCategory Id must not be null!")
     private Integer subCategoryId;
 }
