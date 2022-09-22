@@ -8,5 +8,6 @@ import org.springframework.stereotype.Repository;
 public interface VendorRepositry extends JpaRepository<Vendor, Integer> {
     Vendor findVendorById(Integer id);
     Vendor findVendorByUserId(Integer userId);
+    Vendor findVendorByMaeroufNumber(String MaeroufNumber );
 
 }

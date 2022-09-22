@@ -37,7 +37,8 @@ public class User implements UserDetails {
     private String email;
     @Range(min = 10, message = "phone number need to be at least 10 digits")
     private String phoneNumber;
-    private String location;
+    private String lat;
+    private String lng;
     private Boolean isApproved;
 
     @Override

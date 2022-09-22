@@ -31,6 +31,11 @@ public class VendorController {
         return  ResponseEntity.status(200).body(vendorService.getVendor(id));
     }
 
+    @GetMapping("/get-vendor")
+    public ResponseEntity getVendor2(@AuthenticationPrincipal User user){
+        return  ResponseEntity.status(200).body(vendorService.getVendor2(user));
+    }
+
     @PostMapping
     public ResponseEntity addVendor(@RequestBody @Valid Vendor vendor){
         vendorService.addVendor(vendor);
@@ -46,5 +51,10 @@ public class VendorController {
     public ResponseEntity deleteVendor(@PathVariable Integer id, @AuthenticationPrincipal Vendor vendor){
         vendorService.deleteVendor(id);
         return  ResponseEntity.status(200).body(new ApiResponse("vendor deleted!",201));
+    }
+
+    @GetMapping("/checkmaerouf/{number}")
+    public ResponseEntity checkMaeroufNumber(@PathVariable String number){
+        return  ResponseEntity.status(200).body(vendorService.checkMaeroufNumber(number));
     }
 }

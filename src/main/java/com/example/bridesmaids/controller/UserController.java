@@ -48,7 +48,7 @@ public class UserController {
         return ResponseEntity.status(200).body(user);
     }
 
-    @PutMapping("/update/{id}")
+    @PutMapping("/update")
     public ResponseEntity updateUser(@AuthenticationPrincipal User user,@RequestBody @Valid RegisterForm registerForm){
         userService.updateUser(registerForm, user.getId()) ;
         return  ResponseEntity.status(200).body(new ApiResponse("User updated!",201));
@@ -73,5 +73,14 @@ public class UserController {
     @GetMapping("/byVendor/{id}")
     public ResponseEntity byVendorId(@PathVariable Integer id){
         return  ResponseEntity.status(200).body(userService.byVendorId(id));
+    }
+
+    @GetMapping("/checkemail/{email}")
+    public ResponseEntity checkEmail(@PathVariable String email){
+        return  ResponseEntity.status(200).body(userService.checkEmail(email));
+    }
+    @GetMapping("/checkusername/{username}")
+    public ResponseEntity checkUsername(@PathVariable String username){
+        return  ResponseEntity.status(200).body(userService.checkUsername(username));
     }
 }

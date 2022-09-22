@@ -53,9 +53,9 @@ public class ProductController {
     }
 
 
-    @GetMapping("/byVendorId")
-    public ResponseEntity<List<Product>> findAllByVendorId(@RequestBody Integer vendorId) {
-        List<Product> products = productService.findAllByVendorId(vendorId);
+    @GetMapping("/byVendorId/{id}")
+    public ResponseEntity<List<Product>> findAllByVendorId(@PathVariable Integer id) {
+        List<Product> products = productService.findAllByVendorId(id);
         return ResponseEntity.status(200).body(products);
     }
 
