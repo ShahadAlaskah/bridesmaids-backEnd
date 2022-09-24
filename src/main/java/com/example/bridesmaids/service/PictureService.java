@@ -35,9 +35,9 @@ public class PictureService {
             throw new ApiException("Wrong product ID!");
         }
 
-        if (!product.getVendorId().equals(vendor.getId())){
-            throw new ApiException("Sorry , You do not have the authority to add picture to this product");
-       }
+//        if (!product.getVendorId().equals(vendor.getId())){
+//            throw new ApiException("Sorry , You do not have the authority to add picture to this product");
+//       }
             pictureRepository.save(picture);
         }
 

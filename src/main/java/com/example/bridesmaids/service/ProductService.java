@@ -24,7 +24,7 @@ public class ProductService {
         return productRepository.findAll();
     }
 
-    public void addProduct(AddProductForm addProductForm , User user) {
+    public Integer addProduct(AddProductForm addProductForm , User user) {
         Category category=categoryRepository.findCategoryById(addProductForm.getCategoryId());
         SubCategory subCategory=subCategoryRepository.findSubCategoriesById(addProductForm.getSubCategoryId());
         Vendor vendor=vendorRepositry.findVendorByUserId(user.getId());
@@ -42,7 +42,7 @@ public class ProductService {
             Place place=new Place(null,product.getId(), addProductForm.getCity(), addProductForm.getCapacity(), addProductForm.getLat(), addProductForm.getLng());
             placeRepository.save(place);
         }
-
+return product.getId();
     }
 
     public void deleteProduct(Integer id , User user) {
