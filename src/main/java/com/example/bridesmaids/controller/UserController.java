@@ -77,10 +77,10 @@ public class UserController {
 
     @GetMapping("/checkemail/{email}")
     public ResponseEntity checkEmail(@PathVariable String email){
-        return  ResponseEntity.status(200).body(userService.checkEmail(email));
+        return userService.checkEmail(email);
     }
     @GetMapping("/checkusername/{username}")
     public ResponseEntity checkUsername(@PathVariable String username){
-        return  ResponseEntity.status(200).body(userService.checkUsername(username));
+        return  userService.checkUsername(username);
     }
 }

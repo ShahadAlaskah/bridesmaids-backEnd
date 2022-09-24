@@ -1,4 +1,5 @@
 package com.example.bridesmaids.service;
+import com.example.bridesmaids.dto.ApiResponse;
 import com.example.bridesmaids.dto.RegisterForm;
 import com.example.bridesmaids.exception.ApiException;
 import com.example.bridesmaids.model.Customer;
@@ -8,6 +9,7 @@ import com.example.bridesmaids.repository.CustomerRepositry;
 import com.example.bridesmaids.repository.UserRepository;
 import com.example.bridesmaids.repository.VendorRepositry;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -111,22 +113,22 @@ public class UserService {
         return userRepositry.findUserById(vendor.getUserId());
     }
 
-    public Boolean checkEmail(String email){
-      User user=userRepositry.findUserByEmail(email);
-      if(user==null){
-          return false;
-      }else{
-          return true;
-      }
+    public ResponseEntity checkEmail(String email){
+        User user=userRepositry.findUserByEmail(email);
+        if(user==null){
+            return  ResponseEntity.status(404).body(new ApiResponse("NotFound",404));
+        }else{
+            return  ResponseEntity.status(200).body(user);
+        }
 
     }
 
-    public Boolean checkUsername(String username){
+    public ResponseEntity checkUsername(String username){
         User user=userRepositry.findUserByUsername(username);
         if(user==null){
-            return false;
+            return  ResponseEntity.status(404).body(new ApiResponse("NotFound",404));
         }else{
-            return true;
+            return  ResponseEntity.status(200).body(user);
         }
 
     }

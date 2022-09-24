@@ -55,6 +55,6 @@ public class VendorController {
 
     @GetMapping("/checkmaerouf/{number}")
     public ResponseEntity checkMaeroufNumber(@PathVariable String number){
-        return  ResponseEntity.status(200).body(vendorService.checkMaeroufNumber(number));
+        return  vendorService.checkMaeroufNumber(number);
     }
 }
