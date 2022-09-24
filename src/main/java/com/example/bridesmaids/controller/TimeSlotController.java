@@ -27,8 +27,8 @@ public class TimeSlotController {
     }
 
     @PostMapping("/add")
-    public ResponseEntity<ApiResponse> addTimeSlot(@RequestBody @Valid TimeSlot timeSlot, @AuthenticationPrincipal User user){
-        timeSlotService.addTimeSlot(timeSlot,user);
+    public ResponseEntity<ApiResponse> addTimeSlot(@RequestBody @Valid TimeSlot timeSlot){
+        timeSlotService.addTimeSlot(timeSlot);
         return ResponseEntity.status(201).body(new ApiResponse("Time slot Added Successfully!", 201));
     }
 
