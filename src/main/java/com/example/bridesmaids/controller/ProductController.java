@@ -28,9 +28,9 @@ public class ProductController {
     }
 
     @PostMapping("/add")
-    public ResponseEntity<ApiResponse> addProduct(@RequestBody @Valid AddProductForm addProductForm, @AuthenticationPrincipal User user){
-        productService.addProduct(addProductForm,user);
-        return ResponseEntity.status(201).body(new ApiResponse("Product Added Successfully!" , 201));
+    public ResponseEntity<Integer> addProduct(@RequestBody @Valid AddProductForm addProductForm, @AuthenticationPrincipal User user){
+        Integer productId= productService.addProduct(addProductForm,user);
+        return ResponseEntity.status(201).body(productId);
     }
 
 
