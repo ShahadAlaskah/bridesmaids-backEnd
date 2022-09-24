@@ -63,7 +63,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 "/api/v1/product/update/{id}",
                "/api/v1/product/myProducts","/api/v1/picture/add",
               "/api/v1/picture/delete/{id}",
-               "/api/v1/picture/update/{id}","/api/v1/timeSlot/add",
+               "/api/v1/picture/update/{id}",
                " /api/v1/timeSlot/delete/{id}",
                " /api/v1/timeSlot/update/{id}",
                         "/api/v1/request/getAllByVendorId",
@@ -71,6 +71,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
                 ).hasAuthority("VENDOR")
                 .antMatchers("/api/v1/request/changeRequestStatus/{requestId}/{status}"
+                        ,"/api/v1/timeSlot/add"
                 ).hasAnyAuthority("CUSTOMER","VENDOR")
                 .anyRequest().authenticated()
                 .and()
