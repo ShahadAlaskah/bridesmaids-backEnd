@@ -1,9 +1,11 @@
 package com.example.bridesmaids.service;
+import com.example.bridesmaids.dto.ApiResponse;
 import com.example.bridesmaids.exception.ApiException;
 import com.example.bridesmaids.model.User;
 import com.example.bridesmaids.model.Vendor;
 import com.example.bridesmaids.repository.VendorRepositry;
 import lombok.AllArgsConstructor;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -32,7 +34,7 @@ public class VendorService {
     }
 
     public Vendor getVendor2(User user){
-        return vendorRepositry.findVendorById(user.getId());
+        return vendorRepositry.findVendorByUserId(user.getId());
     }
     public void addVendor( Vendor vendor) {;
         vendorRepositry.save(vendor);
@@ -62,12 +64,12 @@ public class VendorService {
         return vendorRepositry.findVendorByUserId(userId);
     }
 
-    public Boolean checkMaeroufNumber(String MaeroufNumber){
+    public ResponseEntity checkMaeroufNumber(String MaeroufNumber){
         Vendor vendor=vendorRepositry.findVendorByMaeroufNumber(MaeroufNumber);
         if(vendor==null){
-            return false;
+            return  ResponseEntity.status(404).body(new ApiResponse("NotFound",404));
         }else
-            return  true;
+            return  ResponseEntity.status(200).body(vendor);
     }
 }
 
