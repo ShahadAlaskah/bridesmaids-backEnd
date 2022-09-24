@@ -89,7 +89,7 @@ return product.getId();
     }
 
     public List<Product> getMyProducts(User user){
-        return productRepository.findAllByVendorId(user.getId());
+        return productRepository.findAllByUserId(user.getId());
     }
 
     public List<Product> findAllByVendorId(Integer vendorId){

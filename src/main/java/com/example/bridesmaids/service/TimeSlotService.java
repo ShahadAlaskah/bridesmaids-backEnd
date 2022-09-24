@@ -29,15 +29,10 @@ public class TimeSlotService {
     }
 
 
-    public void addTimeSlot(TimeSlot timeSlot, User user) {
-        Vendor vendor=vendorRepositry.findVendorByUserId(user.getId());
+    public void addTimeSlot(TimeSlot timeSlot) {
         Product product= productRepository.findProductById(timeSlot.getProductId());
-
         if(product==null){
             throw new ApiException("Wrong productId!");
-        }
-        if (product.getVendorId().equals(vendor.getId())){
-            throw new ApiException("Sorry , You do not have the authority to add timeSlot to this product");
         }
         timeSlotRepository.save(timeSlot);
     }
